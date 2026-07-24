@@ -1,0 +1,108 @@
+swagger: '2.0'
+info:
+  description: 'Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.
+
+    [Click here](../v1/) for V1 documentation.
+
+
+    ### Debug Info for Reporting Bugs
+
+
+    If you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`
+
+    header in every response that you should send along when interacting with MEDIGO support team.
+
+    '
+  version: 2.0.0
+  title: MEDIGO attachments webhooks API
+  contact:
+    name: the API Support
+    email: itops@medigo.com
+basePath: /v2
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: webhooks
+  description: Push notification related to events in MEDIGO's system
+paths:
+  /webhooks/{id}/trigger/{event}:
+    post:
+      tags:
+      - webhooks
+      summary: Simulate a webhook call
+      description: 'This allows to test your service''s endpoint during the integration process.
+
+        This endpoint should not be called directly during production operations, as events hapening
+
+        on MEDIGO''s system will automatically trigger the webhook calls.
+
+        '
+      operationId: triggerWebhookCall
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: UUID of webhook to be triggered
+      - in: path
+        name: event
+        type: string
+        required: true
+        description: Event type to be triggered
+        enum:
+        - second_opinion:update
+        - second_opinion:new_message
+        - second_opinion:report_ready
+      - in: body
+        name: body
+        description: "The event payload. This depends on the type of events.\n\n  - For `second_opinion:update` events, the payload is of type *SecondOpinion*\n  - For `second_opinion:new_message` events, the payload is of type *SecondOpinionMessage*\n  - For `second_opinion:report_ready` events, the payload is of type *ReportReadyEvent*\n"
+        schema:
+          type: object
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: 'The webhook was successfuly triggered.
+
+            **Note**: This doesn''t mean that the endpoint hit by the webhook replied with a success code.
+
+            The call status will be part of the response returned by this endpoint.
+
+            '
+          schema:
+            $ref: '#/definitions/WebhookCall'
+definitions:
+  WebhookCall:
+    type: object
+    properties:
+      started_at:
+        type: string
+        format: datetime
+        description: UTC date time at which the call was started by MEDIGO system
+        example: '2017-11-09T18:05:43.565629882Z'
+      finished_at:
+        type: string
+        format: datetime
+        description: UTC date time at which the call'response was received by MEDIGO system
+        example: '2017-11-09T18:05:43.665Z'
+      webhook_id:
+        type: string
+        format: uuid
+        description: related webhook id
+        example: 85472549-dbf8-4329-851c-adf789fc5391
+      status_code:
+        type: integer
+        description: The HTTP status code received after performing the call
+        example: 200
+      status:
+        type: string
+        description: The human readable status of the target's response
+        example: 200 OK
+securityDefinitions:
+  partner_token:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: "Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request\nNote that the string *Bearer* followed by a whitespace should be prepended to the token.\nExample:\n\n    GET /v2/ HTTP/1.1\n    Host: https://api.medigo.com\n    Authorization: Bearer <your-api-token>\n"

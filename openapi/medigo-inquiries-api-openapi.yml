@@ -1,0 +1,197 @@
+swagger: '2.0'
+info:
+  description: 'Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.
+
+    [Click here](../v1/) for V1 documentation.
+
+
+    ### Debug Info for Reporting Bugs
+
+
+    If you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`
+
+    header in every response that you should send along when interacting with MEDIGO support team.
+
+    '
+  version: 2.0.0
+  title: MEDIGO attachments inquiries API
+  contact:
+    name: the API Support
+    email: itops@medigo.com
+basePath: /v2
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: inquiries
+paths:
+  /inquiries:
+    post:
+      tags:
+      - inquiries
+      summary: Create a new Medical travel inquiry
+      description: ''
+      operationId: createInquiry
+      parameters:
+      - in: body
+        name: body
+        description: New inquiry to be created
+        schema:
+          $ref: '#/definitions/Inquiry'
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The inquiry was successfully created
+          schema:
+            $ref: '#/definitions/Inquiry'
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/InternalApiResponse'
+definitions:
+  UnauthorizedApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: BadRequest
+      message:
+        type: string
+  Inquiry:
+    type: object
+    required:
+    - comment
+    - email
+    - first_name
+    - last_name
+    - sex
+    - birthdate
+    - statement
+    - timeplan
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+      comment:
+        type: string
+        description: Basic description of the case
+      email:
+        type: string
+        format: email
+        description: Contact email
+        example: john.doe@private.me
+      first_name:
+        type: string
+        description: Patient's first name
+        example: John
+      last_name:
+        type: string
+        description: Patient's last name
+        example: Doe
+      sex:
+        type: string
+        description: Patient's sex
+        enum:
+        - female
+        - male
+        example: male
+      birthdate:
+        type: string
+        format: date-time
+        description: Patient's date of birth in ISO 8601 format
+        example: '1989-02-14T00:00:00.000Z'
+      statement:
+        type: string
+        description: 'How far along the patient is in the process of booking treatment:
+
+
+          - *researching* : Looking for general information about the clinic and treatment
+
+          - *choosing* : In the process of choosing the right clinic and getting a cost estimate
+
+          - *booking* : Ready to book an appointment
+
+          '
+        enum:
+        - researching
+        - choosing
+        - booking
+      timeplan:
+        type: string
+        description: 'Estimation of when the patient would like to have the procedure:
+
+
+          - *7-days* : Within the next 7 days
+
+          - *1-month* : Within the next month
+
+          - *3-months* : Within the next 3 months
+
+          - *3-months-plus* : Sometime later than the next 3 months
+
+          '
+        enum:
+        - 7-days
+        - 1-month
+        - 3-months
+        - 3-months-plus
+      language:
+        type: string
+        description: Patient's language as a [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+        example: fr
+      phone_number:
+        type: string
+        description: Patient's phone number
+      nationality:
+        type: string
+        description: Patient's country of citizenship. [3 characters country code](https://www.countrycode.org/) format
+      custom_fields:
+        type: object
+        description: Map of custom fields that you want to add to your request
+        items:
+          type: string
+        example:
+          my_field_1: hello
+          my_field_2: world
+      attachments:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: A list of UUIDs of uploaded files relevant to the case. See [Attachments](#/attachments)
+        example:
+        - fdsfds-afsdh-fasd823fdd44jksd
+        - dsj23o-i83hs-53453gfddjsfsddf
+      destination:
+        type: string
+        description: Prefered destination for the medical travel. [3 characters country code](https://www.countrycode.org/) format
+      procedures:
+        type: array
+        description: List of procedure IDs relevant to the inquiry. See [Searching for procedures](#/search/searchProcedures)
+        items:
+          type: integer
+          format: int64
+        example:
+        - 70
+        - 73
+  InternalApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: Internal
+      message:
+        type: string
+securityDefinitions:
+  partner_token:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: "Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request\nNote that the string *Bearer* followed by a whitespace should be prepended to the token.\nExample:\n\n    GET /v2/ HTTP/1.1\n    Host: https://api.medigo.com\n    Authorization: Bearer <your-api-token>\n"

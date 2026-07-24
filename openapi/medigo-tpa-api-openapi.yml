@@ -1,0 +1,704 @@
+swagger: '2.0'
+info:
+  description: 'Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.
+
+    [Click here](../v1/) for V1 documentation.
+
+
+    ### Debug Info for Reporting Bugs
+
+
+    If you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`
+
+    header in every response that you should send along when interacting with MEDIGO support team.
+
+    '
+  version: 2.0.0
+  title: MEDIGO attachments tpa API
+  contact:
+    name: the API Support
+    email: itops@medigo.com
+basePath: /v2
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: tpa
+  description: Insurance TPA service APIs
+paths:
+  /members:
+    post:
+      tags:
+      - tpa
+      summary: Enrol a new Member
+      description: ''
+      operationId: createMember
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: body
+        name: body
+        description: New Member to be enrolled
+        schema:
+          $ref: '#/definitions/Member'
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The Member was successfully enrolled
+          schema:
+            $ref: '#/definitions/Member'
+  /members/{partner_member_id}:
+    get:
+      tags:
+      - tpa
+      summary: Get a Member
+      description: ''
+      operationId: getMember
+      parameters:
+      - in: path
+        name: partner_member_id
+        type: string
+        required: true
+        description: Id of the Member to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: Member was found
+          schema:
+            $ref: '#/definitions/Member'
+    patch:
+      tags:
+      - tpa
+      summary: Update a Member
+      description: "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the Member object\n"
+      operationId: updateMember
+      parameters:
+      - in: path
+        name: partner_member_id
+        type: string
+        required: true
+        description: Id of the Member to be updated
+      - in: body
+        name: body
+        description: Partial Member object to be updated
+        schema:
+          $ref: '#/definitions/Member'
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Member was successfully updated
+          schema:
+            $ref: '#/definitions/Member'
+  /insurance-policies:
+    post:
+      tags:
+      - tpa
+      summary: Create a Policy for a Member
+      description: ''
+      operationId: createInsurancePolicy
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: body
+        name: body
+        description: New Insurance Policy data to be created
+        schema:
+          $ref: '#/definitions/InsurancePolicy'
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The InsurancePolicy was successfully created
+          schema:
+            $ref: '#/definitions/InsurancePolicy'
+  /insurance-policies/{policy_number}:
+    get:
+      tags:
+      - tpa
+      summary: Get an InsurancePolicy
+      description: ''
+      operationId: getInsurancePolicy
+      parameters:
+      - in: path
+        name: policy_number
+        type: string
+        required: true
+        description: PolicyNumber to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: Insurance Policy was found
+          schema:
+            $ref: '#/definitions/InsurancePolicy'
+    patch:
+      tags:
+      - tpa
+      summary: Update an InsurancePolicy
+      description: "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the InsurancePolicy object\n"
+      operationId: updateInsurancePolicy
+      parameters:
+      - in: path
+        name: policy_number
+        type: string
+        required: true
+        description: Policy Number to be updated
+      - in: body
+        name: body
+        description: Partial InsurancePolicy object to be updated
+        schema:
+          $ref: '#/definitions/InsurancePolicy'
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Insurance Policy was successfully updated
+          schema:
+            $ref: '#/definitions/InsurancePolicy'
+  /terms:
+    post:
+      tags:
+      - tpa
+      summary: Create a policy coverage term for a Member
+      description: ''
+      operationId: createTerm
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: body
+        name: body
+        description: Policy Coverage period (Term) data to be created
+        schema:
+          $ref: '#/definitions/Term'
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The Term was successfully created
+          schema:
+            $ref: '#/definitions/Term'
+  /insurance-policies/{policy_number}/terms:
+    get:
+      tags:
+      - tpa
+      summary: Get all Terms for a Policy
+      description: ''
+      operationId: getTermsByPolicyNumber
+      parameters:
+      - in: path
+        name: policy_number
+        type: string
+        required: true
+        description: PolicyNumber to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: List of Terms for Policy was found
+          schema:
+            type: array
+            $ref: '#/definitions/Term'
+  /terms/{external_id}:
+    get:
+      tags:
+      - tpa
+      summary: Get a Term
+      description: ''
+      operationId: getTerm
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: Term to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: Term was found
+          schema:
+            $ref: '#/definitions/Term'
+    patch:
+      tags:
+      - tpa
+      summary: Update a Term
+      description: "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the Term object\n"
+      operationId: updateTerm
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: External Id of Term to be fetched
+      - in: body
+        name: body
+        description: Partial Term object to be updated
+        schema:
+          $ref: '#/definitions/Term'
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Term was successfully updated
+          schema:
+            $ref: '#/definitions/Term'
+  /terms/{external_id}/insured-members:
+    post:
+      tags:
+      - tpa
+      summary: Add a dependent to the Policy coverage period
+      description: ''
+      operationId: createInsuredMember
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: External Id of Term to be fetched
+      - in: body
+        name: body
+        description: Insured Member to be added
+        schema:
+          $ref: '#/definitions/InsuredMember'
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The InsuredMember relationship was successfully created
+          schema:
+            $ref: '#/definitions/InsuredMember'
+  /terms/{external_id}/insured-members/{partner_member_id}:
+    delete:
+      tags:
+      - tpa
+      summary: Remove a dependent to the Policy coverage period
+      description: ''
+      operationId: removeInsuredMember
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: External Id of Term
+      - in: path
+        name: partner_member_id
+        type: string
+        required: true
+        description: Id of the Member to be removed
+      - in: body
+        name: body
+        description: Insured Member to be added
+        schema:
+          $ref: '#/definitions/InsuredMember'
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The InsuredMember relationship was successfully removed
+  /tpa/claims:
+    post:
+      tags:
+      - tpa
+      summary: Submit a claim for a member
+      description: ''
+      operationId: submitClaim
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: claim
+        description: Claim to be added with
+        schema:
+          $ref: '#/definitions/Claim'
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The Claim was successfully submitted
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Claim ID assigned to this request
+                example: ABC9876XYZ
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        422:
+          description: Request body fails validation. Check the Claim model schema
+          schema:
+            $ref: '#/definitions/InvalidApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/InternalApiResponse'
+  /tpa/claims/{id}:
+    get:
+      tags:
+      - tpa
+      summary: Retrieve the details of a claim submitted to Medigo
+      operationId: getClaim
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The ID provided in response of [submitClaim](#/tpa/submitClaim)
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Claim was returned successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                required: true
+                example: ABC9876XYZ
+              status:
+                type: string
+                required: true
+                example: SUBMITTED
+              notes:
+                type: string
+                example: Optional text written by the Claims Agent
+        400:
+          description: Invalid/missing id
+          schema:
+            $ref: '#/definitions/BadRequestApiResponse'
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        404:
+          description: No claim found for id
+          schema:
+            $ref: '#/definitions/NotFoundApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/ApiResponse'
+definitions:
+  Term:
+    type: object
+    required:
+    - policy_number
+    - insurance_plan_id
+    - table_of_benefits_id
+    - coverage_area_id
+    - status
+    - term_start
+    - term_end
+    properties:
+      policy_number:
+        type: string
+        description: Unique Policy Number
+      insurance_plan_id:
+        type: string
+        description: Insurance Plan Id in Medigo's System - provided by Medigo to the Insurance Partner
+      table_of_benefits_id:
+        type: string
+        description: Table of Benefits Id in Medigo's System - provided by Medigo to the Insurance Partner
+      coverage_area_id:
+        type: string
+        description: Coverage Area Id in Medigo's System - provided by Medigo to the Insurance Partner
+      status:
+        type: string
+        example: accepting
+        enum:
+        - accepting
+        - not accepting
+      term_start:
+        type: string
+        format: date
+        description: UTC coverage start date
+        example: '2019-11-09'
+      term_end:
+        type: string
+        format: datetime
+        description: UTC coverage end date
+        example: '2020-11-08'
+      deductible:
+        type: number
+        format: float
+        description: Deductible applied to the coverage period in Policy Currency
+        example: 459.0
+      premium:
+        type: number
+        format: float
+        description: Premium collected for the coverage period in Policy Currency
+        example: 1599.99
+      payment_period:
+        type: string
+        example: yearly
+        enum:
+        - yearly
+        - bi-annually
+        - quarterly
+        - monthly
+      external_id:
+        type: string
+        readOnly: true
+        description: Medigo's reference ID for this term
+        example: '123'
+  NotFoundApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: NotFound
+      message:
+        type: string
+  Claim:
+    type: object
+    required:
+    - name
+    - birthdate
+    - membership_number
+    properties:
+      name:
+        type: string
+        description: Patient's name
+        example: Jane Doe
+      birthdate:
+        type: string
+        format: date
+        description: Member's date of birth in ISO 8601 format YYYY-MM-DD
+        example: '1989-02-14'
+      membership_number:
+        type: string
+        description: Unique identifier assigned to the Member
+        example: ABC12345DEF
+      policy_number:
+        type: string
+        description: Policy Number
+        example: XYZ12345
+      policy_valid_until:
+        type: string
+        description: Policy validity date; assumes till end of day in ISO 8601 format YYYY-MM-DD
+        example: '2035-11-30'
+      email:
+        type: string
+        format: email
+        description: Contact email
+        example: john.doe@private.me
+      phone:
+        type: string
+        format: phone
+        description: Contact phone with country code
+        example: +49 30 12345678
+      custom_fields:
+        type: object
+        description: Map of custom fields that you want to add to your request
+        example:
+          my_field_1: hello
+          my_field_2: world
+      files:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: A list of UUIDs of uploaded files relevant to the case. See [Attachments](#/attachments)
+        example:
+        - fdsfds-afsdh-fasd823fdd44jksd
+        - dsj23o-i83hs-53453gfddjsfsddf
+  InvalidApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: Invalid
+      message:
+        type: string
+  UnauthorizedApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: BadRequest
+      message:
+        type: string
+  BadRequestApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: BadRequest
+      message:
+        type: string
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+  InsurancePolicy:
+    type: object
+    required:
+    - insurance_product_id
+    - policy_number
+    - policy_holder_id
+    - status
+    - underwriting_status
+    - currency
+    - start_date
+    properties:
+      insurance_product_id:
+        type: string
+        description: Insurance Product Code in Medigo's System - provided by Medigo to the Insurance Partner
+      policy_number:
+        type: string
+        description: Unique Policy Number
+      policy_holder_partner_member_id:
+        type: string
+        description: Unique ID of the Member holding the Policy
+      status:
+        type: string
+        example: active
+        enum:
+        - active
+        - due for renewal
+        - suspended
+        - lapsed
+        - archived
+      underwriting_status:
+        type: string
+        example: FMU
+        enum:
+        - FMU
+        - Moratorium
+        - Rolling moratorium
+        - CPME
+        - MHD
+        - Unspecified
+      currency:
+        type: string
+        description: Currency (format [ISO 4217](https://www.iban.com/currency-codes.html))
+        example: EUR
+      start_date:
+        type: string
+        format: datetime
+        description: UTC Policy Inception date time
+        example: '2017-11-09T18:05:43.565629882Z'
+      cancellation_date:
+        type: string
+        format: datetime
+        description: UTC Policy Cancellation date time
+        example: '2019-10-19T18:04:23.775620812Z'
+  Member:
+    type: object
+    required:
+    - first_name
+    - last_name
+    - sex
+    - birthdate
+    - residence
+    properties:
+      partner_member_id:
+        type: string
+        description: Unique ID of the Member
+      email:
+        type: string
+        format: email
+        description: Contact email
+        example: john.doe@private.me
+      first_name:
+        type: string
+        description: Member's first name(s)
+        example: John
+      middle_name:
+        type: string
+        description: Member's middle name(s)
+        example: Peter Jack
+      last_name:
+        type: string
+        description: Member's last name(s)
+        example: Doe
+      sex:
+        type: string
+        description: Member's sex
+        enum:
+        - female
+        - male
+        example: male
+      birthdate:
+        type: string
+        format: date-time
+        description: Member's date of birth in ISO 8601 format
+        example: '1989-02-14T00:00:00.000Z'
+      salutation:
+        type: string
+        example: Mr.
+        enum:
+        - Mr.
+        - Mrs.
+        - Sir
+        - Dr.
+        - Prof.
+      phone:
+        type: string
+        description: Member's phone number
+        example: +49 321 987653
+      residence:
+        type: string
+        description: Member's country of residence. [3 characters country code](https://www.countrycode.org/) format
+        example: deu
+      city:
+        type: string
+        description: Member's city of residence
+      address1:
+        type: string
+        description: Member's address
+      postal_code:
+        type: string
+        description: Member's postal code
+  InsuredMember:
+    type: object
+    required:
+    - term_id
+    - member_id
+    - relation
+    properties:
+      term_external_id:
+        type: string
+        description: Medigo's reference ID for this term - see Term external_id
+        example: '123'
+      partner_member_id:
+        type: string
+        description: Unique ID of the Member
+      relation:
+        type: string
+        example: wife
+        enum:
+        - husband
+        - wife
+        - civil partner
+        - son
+        - daughter
+        - unspecified
+  InternalApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: Internal
+      message:
+        type: string
+securityDefinitions:
+  partner_token:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: "Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request\nNote that the string *Bearer* followed by a whitespace should be prepended to the token.\nExample:\n\n    GET /v2/ HTTP/1.1\n    Host: https://api.medigo.com\n    Authorization: Bearer <your-api-token>\n"

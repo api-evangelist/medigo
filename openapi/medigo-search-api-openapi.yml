@@ -1,0 +1,77 @@
+swagger: '2.0'
+info:
+  description: 'Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.
+
+    [Click here](../v1/) for V1 documentation.
+
+
+    ### Debug Info for Reporting Bugs
+
+
+    If you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`
+
+    header in every response that you should send along when interacting with MEDIGO support team.
+
+    '
+  version: 2.0.0
+  title: MEDIGO attachments search API
+  contact:
+    name: the API Support
+    email: itops@medigo.com
+basePath: /v2
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: search
+  description: Search endpoints
+paths:
+  /search/procedures:
+    get:
+      tags:
+      - search
+      summary: Search procedures available through MEDIGO
+      description: ''
+      operationId: searchProcedures
+      parameters:
+      - in: query
+        name: q
+        type: string
+        description: Query term to be matched
+      - in: query
+        name: lang
+        type: string
+        description: ISO 639-1 language code of in which the search terms are entered. Defaults to English if omitted or provided value not supported by MEDIGO
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Procedure'
+definitions:
+  Procedure:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Procedure identifier in MEDIGO's database
+        example: 112
+      name:
+        type: string
+        description: Procedure name
+        example: Dental Implant Removal
+      slug:
+        type: string
+        description: Procedure slug for use in urls
+        example: dental-implant-removal
+securityDefinitions:
+  partner_token:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: "Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request\nNote that the string *Bearer* followed by a whitespace should be prepended to the token.\nExample:\n\n    GET /v2/ HTTP/1.1\n    Host: https://api.medigo.com\n    Authorization: Bearer <your-api-token>\n"

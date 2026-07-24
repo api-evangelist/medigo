@@ -1,0 +1,133 @@
+swagger: '2.0'
+info:
+  description: 'Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.
+
+    [Click here](../v1/) for V1 documentation.
+
+
+    ### Debug Info for Reporting Bugs
+
+
+    If you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`
+
+    header in every response that you should send along when interacting with MEDIGO support team.
+
+    '
+  version: 2.0.0
+  title: MEDIGO attachments API
+  contact:
+    name: the API Support
+    email: itops@medigo.com
+basePath: /v2
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: attachments
+  description: File that contains content relevant to a medical inquiry
+paths:
+  /files:
+    post:
+      tags:
+      - attachments
+      summary: Upload a file to MEDIGO's server
+      description: ''
+      operationId: uploadFile
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: file
+        in: formData
+        description: File to upload
+        required: true
+        type: file
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The file was successfully uploaded to MEDIGO's servers
+          schema:
+            $ref: '#/definitions/Attachment'
+        400:
+          description: Missing file name
+          schema:
+            $ref: '#/definitions/BadRequestApiResponse'
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        422:
+          description: Invalid Mimetype
+          schema:
+            $ref: '#/definitions/InvalidApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/InternalApiResponse'
+definitions:
+  InvalidApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: Invalid
+      message:
+        type: string
+  UnauthorizedApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: BadRequest
+      message:
+        type: string
+  BadRequestApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: BadRequest
+      message:
+        type: string
+  Attachment:
+    type: object
+    properties:
+      uuid:
+        type: string
+        format: uuid
+        readOnly: true
+        description: Generated attachment's UUID
+        example: ead5dc24-e37f-4e2e82jss4db3f7574dd
+      name:
+        type: string
+        description: File name
+        example: my-attachment.pdf
+      mime_type:
+        type: string
+        description: 'File''s [mime type](https://www.sitepoint.com/mime-types-complete-list/)
+
+          only some types are allowed to be uploaded
+
+          '
+        example: application/pdf
+      size:
+        type: integer
+        format: int64
+        readOnly: true
+        description: File size in bytes
+        example: 57995
+  InternalApiResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        example: Internal
+      message:
+        type: string
+securityDefinitions:
+  partner_token:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: "Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request\nNote that the string *Bearer* followed by a whitespace should be prepended to the token.\nExample:\n\n    GET /v2/ HTTP/1.1\n    Host: https://api.medigo.com\n    Authorization: Bearer <your-api-token>\n"
