@@ -1,7 +1,29 @@
 aid: medigo
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/medigo.png
 name: Medigo
-description: 'Medigo is a company surfaced as a portfolio company of accel and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Medigo (MEDIGO GmbH) is a Berlin-based health-tech company, founded in 2013,
+  that enables global access to quality healthcare as a third party
+  administrator (TPA). It helps insurers and organisations navigate healthcare
+  worldwide with a curated provider network spanning 100+ countries, tech-driven
+  cost containment, claims handling, medical concierge, and second medical
+  opinions. Medigo exposes a partner REST API (MEDIGO API V2) that lets insurers
+  and integrators manage members, insurance policies, terms and insured members,
+  submit and track TPA claims, request and track second medical opinions, upload
+  medical attachments, search procedures, and receive event webhooks. Backed by
+  Accel and Atlantic Labs.
 url: https://raw.githubusercontent.com/api-evangelist/medigo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,16 +33,145 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Consumer
-apis: []
+- Healthcare
+- Insurance
+- Third Party Administrator
+- Claims
+- Cost Containment
+- Second Medical Opinion
+- Medical Travel
+- Health Insurance
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: medigo:medigo-attachments-api
+  name: Medigo attachments API
+  description: File that contains content relevant to a medical inquiry
+  humanURL: https://api.medigo.com/docs/v2/
+  baseURL: https://api.medigo.com/v2
+  tags:
+  - attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/medigo-attachments-api-openapi.yml
+  - type: APIReference
+    url: https://api.medigo.com/docs/v2/
+  - type: Documentation
+    url: https://api.medigo.com/docs/v2/
+- aid: medigo:medigo-inquiries-api
+  name: Medigo inquiries API
+  description: The inquiries API from Medigo — 1 operation(s) for inquiries.
+  humanURL: https://api.medigo.com/docs/v2/
+  baseURL: https://api.medigo.com/v2
+  tags:
+  - inquiries
+  properties:
+  - type: OpenAPI
+    url: openapi/medigo-inquiries-api-openapi.yml
+  - type: APIReference
+    url: https://api.medigo.com/docs/v2/
+  - type: Documentation
+    url: https://api.medigo.com/docs/v2/
+- aid: medigo:medigo-search-api
+  name: Medigo search API
+  description: Search endpoints
+  humanURL: https://api.medigo.com/docs/v2/
+  baseURL: https://api.medigo.com/v2
+  tags:
+  - search
+  properties:
+  - type: OpenAPI
+    url: openapi/medigo-search-api-openapi.yml
+  - type: APIReference
+    url: https://api.medigo.com/docs/v2/
+  - type: Documentation
+    url: https://api.medigo.com/docs/v2/
+- aid: medigo:medigo-second-opinions-api
+  name: Medigo second-opinions API
+  description: Professional review of a diagnosis or treatment already suggested by a doctor
+  humanURL: https://api.medigo.com/docs/v2/
+  baseURL: https://api.medigo.com/v2
+  tags:
+  - second-opinions
+  properties:
+  - type: OpenAPI
+    url: openapi/medigo-second-opinions-api-openapi.yml
+  - type: APIReference
+    url: https://api.medigo.com/docs/v2/
+  - type: Documentation
+    url: https://api.medigo.com/docs/v2/
+- aid: medigo:medigo-tpa-api
+  name: Medigo tpa API
+  description: Insurance TPA service APIs
+  humanURL: https://api.medigo.com/docs/v2/
+  baseURL: https://api.medigo.com/v2
+  tags:
+  - tpa
+  properties:
+  - type: OpenAPI
+    url: openapi/medigo-tpa-api-openapi.yml
+  - type: APIReference
+    url: https://api.medigo.com/docs/v2/
+  - type: Documentation
+    url: https://api.medigo.com/docs/v2/
+- aid: medigo:medigo-webhooks-api
+  name: Medigo webhooks API
+  description: Push notification related to events in MEDIGO's system
+  humanURL: https://api.medigo.com/docs/v2/
+  baseURL: https://api.medigo.com/v2
+  tags:
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/medigo-webhooks-api-openapi.yml
+  - type: APIReference
+    url: https://api.medigo.com/docs/v2/
+  - type: Documentation
+    url: https://api.medigo.com/docs/v2/
 common:
+- type: AgenticAccess
+  url: agentic-access/medigo-agentic-access.yml
+- type: Conventions
+  url: conventions/medigo-conventions.yml
+- type: ErrorCatalog
+  url: errors/medigo-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/medigo-lifecycle.yml
+- type: DataModel
+  url: data-model/medigo-data-model.yml
+- type: Webhooks
+  url: asyncapi/medigo-webhooks.yml
+- type: MCPServer
+  url: mcp/medigo-mcp.yml
+- type: Conformance
+  url: conformance/medigo-conformance.yml
+- type: LLMsTxt
+  url: llms/medigo-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/medigo-domain-security.yml
+- type: Authentication
+  url: authentication/medigo-authentication.yml
 - type: Website
-  url: http://www.medigo.com
+  url: https://www.medigo.com
+- type: GitHubOrganization
+  url: https://github.com/MEDIGO
+- type: TermsOfService
+  url: https://www.medigo.com/partnership-terms-conditions/
+- type: PrivacyPolicy
+  url: https://www.medigo.com/privacy-policy/
+- type: Support
+  url: https://www.medigo.com/contact/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  pass: local-v1
+  artifacts_added: 17
