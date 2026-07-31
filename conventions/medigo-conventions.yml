@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/medigo-openapi-original.yml
+# Cross-cutting request/response semantics for the MEDIGO API V2, derived from the
+# OpenAPI and the auth description in the spec. Cross-links: authentication/,
+# errors/, lifecycle/.
+authentication:
+  style: bearer-api-key
+  scheme: partner_token
+  location: header
+  header: Authorization
+  format: "Bearer <partner-api-token>"
+  ref: authentication/medigo-authentication.yml
+content_negotiation:
+  consumes:
+  - application/json
+  produces:
+  - application/json
+request_tracing:
+  header: Trace-Id
+  direction: response
+  note: >-
+    Returned on every response; include its value when reporting bugs or contacting
+    MEDIGO support.
+versioning:
+  style: uri-path
+  current: v2
+  ref: lifecycle/medigo-lifecycle.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header or contract is documented in the OpenAPI or docs.
+pagination:
+  supported: false
+  note: List endpoints declare no cursor/offset/limit parameters in the OpenAPI.
+error_envelope:
+  content_type: application/json
+  shape: "{ code: string, message: string }"
+  ref: errors/medigo-problem-types.yml
+rate_limiting:
+  documented: false
+metadata:
+  documented: false
+field_expansion:
+  documented: false

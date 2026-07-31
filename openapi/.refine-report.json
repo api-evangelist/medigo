@@ -1,0 +1,24 @@
+{
+  "provider": "medigo",
+  "sources": [
+    "medigo-attachments-api-openapi.yml",
+    "medigo-inquiries-api-openapi.yml",
+    "medigo-search-api-openapi.yml",
+    "medigo-second-opinions-api-openapi.yml",
+    "medigo-tpa-api-openapi.yml",
+    "medigo-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "medigo-attachments-api-openapi.yml",
+    "medigo-inquiries-api-openapi.yml",
+    "medigo-search-api-openapi.yml",
+    "medigo-second-opinions-api-openapi.yml",
+    "medigo-tpa-api-openapi.yml",
+    "medigo-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

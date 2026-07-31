@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/medigo-openapi-original.yml
+skills:
+- file: medigo-request-second-opinion.md
+  name: Request and track a MEDIGO second opinion
+  api: openapi/medigo-openapi-original.yml
+  operations:
+  - createSecondOpinion
+  - getSecondOpinion
+  - uploadFile
+  - postSecondOpinionMessage
+  - listSecondOpinionMessages
+  - listSecondOpinionAttachments
+  - getSecondOpinionAttachmentContent
+- file: medigo-onboard-tpa-member.md
+  name: Onboard a TPA member under an insurance policy
+  api: openapi/medigo-openapi-original.yml
+  operations:
+  - createMember
+  - getMember
+  - createInsurancePolicy
+  - createTerm
+  - getTermsByPolicyNumber
+  - createInsuredMember
+- file: medigo-submit-and-track-claim.md
+  name: Submit and track a TPA claim
+  api: openapi/medigo-openapi-original.yml
+  operations:
+  - submitClaim
+  - getClaim

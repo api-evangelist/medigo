@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://api.medigo.com/docs/v2/
+spec_type: Webhooks
+# MEDIGO delivers push notifications (webhooks) for events in its system to a
+# partner-registered endpoint. No standalone AsyncAPI document is published; this
+# is the webhook event catalog derived from the OpenAPI `webhooks` tag and the
+# triggerWebhookCall simulation operation. Event names and payload types are taken
+# verbatim from the enum + description on POST /webhooks/{id}/trigger/{event}.
+transport: http-webhook
+description: >-
+  Push notifications related to events in MEDIGO's system. Events fire
+  automatically in production; the trigger endpoint is provided to simulate them
+  during integration.
+simulation:
+  operation: triggerWebhookCall
+  path: /webhooks/{id}/trigger/{event}
+  method: post
+  note: >-
+    Simulates a webhook call so a partner can test their receiving endpoint. A
+    200 confirms the webhook was triggered, not that the receiver replied with
+    success; the receiver's status is returned in the WebhookCall response.
+events:
+- name: second_opinion:update
+  payload_type: SecondOpinion
+  description: A second-opinion request changed state.
+- name: second_opinion:new_message
+  payload_type: SecondOpinionMessage
+  description: A new message was posted on a second-opinion thread.
+- name: second_opinion:report_ready
+  payload_type: ReportReadyEvent
+  description: The medical report for a second opinion is ready.

@@ -1,0 +1,77 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/medigo-openapi-original.yml
+# Entity-relationship graph derived from OpenAPI definitions and the id-reference
+# fields encoded in the path structure (partner_member_id, policy_number,
+# external_id, second-opinion id). Two product domains: Second Opinions and TPA.
+entities:
+- name: Procedure
+  domain: search
+  id: null
+  note: Searchable medical procedure catalog entry.
+- name: SecondOpinion
+  domain: second-opinions
+  id: id
+- name: SecondOpinionMessage
+  domain: second-opinions
+  id: id
+- name: Attachment
+  domain: second-opinions
+  id: uuid
+- name: ReportReadyEvent
+  domain: second-opinions
+  id: null
+- name: Inquiry
+  domain: inquiries
+  id: id
+- name: Member
+  domain: tpa
+  id: partner_member_id
+- name: InsurancePolicy
+  domain: tpa
+  id: policy_number
+- name: Term
+  domain: tpa
+  id: external_id
+- name: InsuredMember
+  domain: tpa
+  id: partner_member_id
+- name: Claim
+  domain: tpa
+  id: id
+- name: WebhookCall
+  domain: webhooks
+  id: null
+relationships:
+- from: SecondOpinion
+  to: SecondOpinionMessage
+  type: has_many
+  via: second_opinion_id
+- from: SecondOpinion
+  to: Attachment
+  type: has_many
+  via: second_opinion_id
+- from: InsurancePolicy
+  to: Term
+  type: has_many
+  via: policy_number
+- from: Term
+  to: InsurancePolicy
+  type: belongs_to
+  via: policy_number
+- from: Term
+  to: InsuredMember
+  type: has_many
+  via: external_id
+- from: InsuredMember
+  to: Term
+  type: belongs_to
+  via: external_id
+- from: InsuredMember
+  to: Member
+  type: belongs_to
+  via: partner_member_id
+- from: Claim
+  to: Member
+  type: belongs_to
+  via: partner_member_id

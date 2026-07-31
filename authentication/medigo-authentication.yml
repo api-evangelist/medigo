@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/medigo-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: partner_token
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: |-
+    Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request
+    Note that the string *Bearer* followed by a whitespace should be prepended to the token.
+    Example:
+
+        GET /v2/ HTTP/1.1
+        Host: https://api.medigo.com
+        Authorization: Bearer <your-api-token>
+  sources:
+  - openapi/medigo-openapi-original.yml

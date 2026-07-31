@@ -1,0 +1,87 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/medigo-openapi-original.yml
+status: candidate
+# No official hosted/remote MCP server for MEDIGO was found. This is a candidate
+# tool surface derived one-to-one from the OpenAPI operations, for a future MCP
+# server fronting the MEDIGO API V2.
+server:
+  name: medigo
+  transport: http
+  auth: bearer-api-key
+tools:
+- name: search_procedures
+  description: Search procedures available through MEDIGO.
+  source_operation: openapi/medigo-openapi-original.yml#searchProcedures
+- name: create_second_opinion
+  description: Create a Second Opinion request.
+  source_operation: openapi/medigo-openapi-original.yml#createSecondOpinion
+- name: get_second_opinion
+  description: Retrieve a Second Opinion request.
+  source_operation: openapi/medigo-openapi-original.yml#getSecondOpinion
+- name: update_second_opinion
+  description: Update a Second Opinion request.
+  source_operation: openapi/medigo-openapi-original.yml#updateSecondOpinion
+- name: post_second_opinion_message
+  description: Post a message on a Second Opinion thread.
+  source_operation: openapi/medigo-openapi-original.yml#postSecondOpinionMessage
+- name: list_second_opinion_messages
+  description: List messages on a Second Opinion thread.
+  source_operation: openapi/medigo-openapi-original.yml#listSecondOpinionMessages
+- name: list_second_opinion_attachments
+  description: List attachments on a Second Opinion.
+  source_operation: openapi/medigo-openapi-original.yml#listSecondOpinionAttachments
+- name: get_second_opinion_attachment_content
+  description: Download the content of a Second Opinion attachment.
+  source_operation: openapi/medigo-openapi-original.yml#getSecondOpinionAttachmentContent
+- name: create_inquiry
+  description: Create a medical inquiry.
+  source_operation: openapi/medigo-openapi-original.yml#createInquiry
+- name: upload_file
+  description: Upload a file/attachment.
+  source_operation: openapi/medigo-openapi-original.yml#uploadFile
+- name: create_member
+  description: Create a TPA member.
+  source_operation: openapi/medigo-openapi-original.yml#createMember
+- name: get_member
+  description: Retrieve a TPA member by partner_member_id.
+  source_operation: openapi/medigo-openapi-original.yml#getMember
+- name: update_member
+  description: Update a TPA member.
+  source_operation: openapi/medigo-openapi-original.yml#updateMember
+- name: create_insurance_policy
+  description: Create an insurance policy.
+  source_operation: openapi/medigo-openapi-original.yml#createInsurancePolicy
+- name: get_insurance_policy
+  description: Retrieve an insurance policy by policy_number.
+  source_operation: openapi/medigo-openapi-original.yml#getInsurancePolicy
+- name: update_insurance_policy
+  description: Update an insurance policy.
+  source_operation: openapi/medigo-openapi-original.yml#updateInsurancePolicy
+- name: create_term
+  description: Create a policy term.
+  source_operation: openapi/medigo-openapi-original.yml#createTerm
+- name: get_terms_by_policy_number
+  description: List terms for an insurance policy.
+  source_operation: openapi/medigo-openapi-original.yml#getTermsByPolicyNumber
+- name: get_term
+  description: Retrieve a term by external_id.
+  source_operation: openapi/medigo-openapi-original.yml#getTerm
+- name: update_term
+  description: Update a term.
+  source_operation: openapi/medigo-openapi-original.yml#updateTerm
+- name: create_insured_member
+  description: Add an insured member to a term.
+  source_operation: openapi/medigo-openapi-original.yml#createInsuredMember
+- name: remove_insured_member
+  description: Remove an insured member from a term.
+  source_operation: openapi/medigo-openapi-original.yml#removeInsuredMember
+- name: submit_claim
+  description: Submit a TPA claim.
+  source_operation: openapi/medigo-openapi-original.yml#submitClaim
+- name: get_claim
+  description: Retrieve a TPA claim by id.
+  source_operation: openapi/medigo-openapi-original.yml#getClaim
+- name: trigger_webhook_call
+  description: Simulate a webhook call for integration testing.
+  source_operation: openapi/medigo-openapi-original.yml#triggerWebhookCall

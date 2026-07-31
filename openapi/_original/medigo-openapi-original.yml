@@ -1,0 +1,1289 @@
+swagger: "2.0"
+info:
+  description: |
+    Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.
+    [Click here](../v1/) for V1 documentation.
+
+    ### Debug Info for Reporting Bugs
+
+    If you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`
+    header in every response that you should send along when interacting with MEDIGO support team.
+
+  version: "2.0.0"
+  title: "MEDIGO API"
+  contact:
+    name: "the API Support"
+    email: "itops@medigo.com"
+basePath: "/v2"
+consumes: ['application/json']
+produces: ['application/json']
+
+tags:
+- name: second-opinions
+  description: Professional review of a diagnosis or treatment already suggested by a doctor
+- name: attachments
+  description: File that contains content relevant to a medical inquiry
+- name: search
+  description: "Search endpoints"
+- name: webhooks
+  description: Push notification related to events in MEDIGO's system
+- name: tpa
+  description: Insurance TPA service APIs
+paths:
+  /search/procedures:
+    get:
+      tags: [search]
+      summary: Search procedures available through MEDIGO
+      description: ''
+      operationId: searchProcedures
+      parameters:
+      - in: query
+        name: q
+        type: string
+        description: Query term to be matched
+      - in: query
+        name: lang
+        type: string
+        description: ISO 639-1 language code of in which the search terms are entered. Defaults to English if omitted or provided value not supported by MEDIGO
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Procedure'
+  /second-opinions:
+    post:
+      tags: [second-opinions]
+      summary: Create a Second Opinion request
+      description: ''
+      operationId: createSecondOpinion
+      parameters:
+      - in: body
+        name: body
+        description: New second opinion to be created
+        schema:
+          $ref: "#/definitions/SecondOpinion"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The second opinion request was successfully created
+          schema:
+            $ref: '#/definitions/SecondOpinion'
+  /second-opinions/{id}:
+    get:
+      tags: [second-opinions]
+      summary: Get a second opinion request
+      description: ''
+      operationId: getSecondOpinion
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of second opinion to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The second opinion request was found
+          schema:
+            $ref: '#/definitions/SecondOpinion'
+    patch:
+      tags: [second-opinions]
+      summary: Update a second opinion request
+      description: |
+        Please note the following:
+          - You only need to provide the updated fields, the previously input data will remain
+          - The response will contain the entire new state of the second opinion object
+
+      operationId: updateSecondOpinion
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of second opinion to be updated
+      - in: body
+        name: body
+        description: Partial Second opinion object to be updated
+        schema:
+          $ref: "#/definitions/SecondOpinion"
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The second opinion request was successfully updated
+          schema:
+            $ref: '#/definitions/SecondOpinion'
+  /second-opinions/{id}/messages:
+    post:
+      tags: [second-opinions]
+      summary: Add a message to a second opinion request
+      description: ''
+      operationId: postSecondOpinionMessage
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of related second opinion
+      - in: body
+        name: body
+        description: New second opinion to be added. The direction should logically be set to outbound
+        schema:
+          $ref: "#/definitions/SecondOpinionMessage"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The new message was added
+          schema:
+            $ref: '#/definitions/SecondOpinionMessage'
+    get:
+      tags: [second-opinions]
+      summary: List messages of a second opinion request
+      description: ''
+      operationId: listSecondOpinionMessages
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of related second opinion
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: >
+            Request was successful. Note that if the second opinion doesn't have any messages,
+            the status *200* will still be returned with an empty array in the body.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SecondOpinionMessage'
+  /second-opinions/{id}/attachments:
+    get:
+      tags: [second-opinions]
+      summary: List attachments of a second opinion request
+      description: >
+        Use this endpoint to see a list of attachments's **metadata**.
+        If you want to download the actual files,
+        see [download attachment](#/second-opinions/getSecondOpinionAttachmentContent) instead.
+      operationId: listSecondOpinionAttachments
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of second opinion to be updated
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: >
+            Request was successful. Note that if the second opinion doesn't have any
+            attachments, the status *200* will still be returned with an empty array
+            in the body.
+
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attachment'
+  /second-opinions/{id}/attachments/{uuid}/content:
+    get:
+      tags: [second-opinions]
+      summary: Download second opinion attachments
+      description: |
+        Use this endpoint to download an attachment. The content will be returned.
+        **Caution**, this endpoint doesn't return JSON but the raw file content (binary or text according to attachment's MIME type)
+      operationId: getSecondOpinionAttachmentContent
+      produces: ['application/octet-stream']
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of second opinion object
+      - in: path
+        name: uuid
+        type: string
+        required: true
+        description: UUID of the desired attachment
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: File was found and data is sent.
+          schema:
+            type: file
+  /inquiries:
+    post:
+      tags: [inquiries]
+      summary: Create a new Medical travel inquiry
+      description: ''
+      operationId: createInquiry
+      parameters:
+      - in: body
+        name: body
+        description: New inquiry to be created
+        schema:
+          $ref: "#/definitions/Inquiry"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The inquiry was successfully created
+          schema:
+            $ref: '#/definitions/Inquiry'
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/InternalApiResponse'
+  /files:
+    post:
+      tags: [attachments]
+      summary: Upload a file to MEDIGO's server
+      description: ''
+      operationId: uploadFile
+      consumes: ['multipart/form-data']
+      parameters:
+      - name: file
+        in: formData
+        description: File to upload
+        required: true
+        type: file
+      security:
+        - partner_token: []
+      responses:
+        201:
+          description: The file was successfully uploaded to MEDIGO's servers
+          schema:
+            $ref: '#/definitions/Attachment'
+        400:
+          description: Missing file name
+          schema:
+            $ref: '#/definitions/BadRequestApiResponse'
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        422:
+          description: Invalid Mimetype
+          schema:
+            $ref: '#/definitions/InvalidApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/InternalApiResponse'
+  /members:
+    post:
+      tags: [tpa]
+      summary: Enrol a new Member
+      description: ''
+      operationId: createMember
+      consumes: ['multipart/form-data']
+      parameters:
+      - in: body
+        name: body
+        description: New Member to be enrolled 
+        schema:
+          $ref: "#/definitions/Member"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The Member was successfully enrolled
+          schema:
+            $ref: '#/definitions/Member'
+  /members/{partner_member_id}:
+    get:
+      tags: [tpa]
+      summary: Get a Member
+      description: ''
+      operationId: getMember
+      parameters:
+      - in: path
+        name: partner_member_id
+        type: string
+        required: true
+        description: Id of the Member to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: Member was found
+          schema:
+            $ref: '#/definitions/Member'
+    patch:
+      tags: [tpa]
+      summary: Update a Member
+      description: |
+        Please note the following:
+          - You only need to provide the updated fields, the previously input data will remain
+          - The response will contain the entire new state of the Member object
+
+      operationId: updateMember
+      parameters:
+      - in: path
+        name: partner_member_id
+        type: string
+        required: true
+        description: Id of the Member to be updated
+      - in: body
+        name: body
+        description: Partial Member object to be updated
+        schema:
+          $ref: "#/definitions/Member"
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Member was successfully updated
+          schema:
+            $ref: '#/definitions/Member'
+  /insurance-policies:
+    post:
+      tags: [tpa]
+      summary: Create a Policy for a Member
+      description: ''
+      operationId: createInsurancePolicy
+      consumes: ['multipart/form-data']
+      parameters:
+      - in: body
+        name: body
+        description: New Insurance Policy data to be created
+        schema:
+          $ref: "#/definitions/InsurancePolicy"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The InsurancePolicy was successfully created
+          schema:
+            $ref: '#/definitions/InsurancePolicy'
+  /insurance-policies/{policy_number}:
+    get:
+      tags: [tpa]
+      summary: Get an InsurancePolicy
+      description: ''
+      operationId: getInsurancePolicy
+      parameters:
+      - in: path
+        name: policy_number
+        type: string
+        required: true
+        description: PolicyNumber to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: Insurance Policy was found
+          schema:
+            $ref: '#/definitions/InsurancePolicy'
+    patch:
+      tags: [tpa]
+      summary: Update an InsurancePolicy
+      description: |
+        Please note the following:
+          - You only need to provide the updated fields, the previously input data will remain
+          - The response will contain the entire new state of the InsurancePolicy object
+
+      operationId: updateInsurancePolicy
+      parameters:
+      - in: path
+        name: policy_number
+        type: string
+        required: true
+        description: Policy Number to be updated
+      - in: body
+        name: body
+        description: Partial InsurancePolicy object to be updated
+        schema:
+          $ref: "#/definitions/InsurancePolicy"
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Insurance Policy was successfully updated
+          schema:
+            $ref: '#/definitions/InsurancePolicy'
+  /terms:
+    post:
+      tags: [tpa]
+      summary: Create a policy coverage term for a Member
+      description: ''
+      operationId: createTerm
+      consumes: ['multipart/form-data']
+      parameters:
+      - in: body
+        name: body
+        description: Policy Coverage period (Term) data to be created
+        schema:
+          $ref: "#/definitions/Term"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The Term was successfully created
+          schema:
+            $ref: '#/definitions/Term'
+  /insurance-policies/{policy_number}/terms:
+    get:
+      tags: [tpa]
+      summary: Get all Terms for a Policy
+      description: ''
+      operationId: getTermsByPolicyNumber
+      parameters:
+      - in: path
+        name: policy_number
+        type: string
+        required: true
+        description: PolicyNumber to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: List of Terms for Policy was found
+          schema:
+            type: array
+            $ref: '#/definitions/Term'
+  /terms/{external_id}:
+    get:
+      tags: [tpa]
+      summary: Get a Term
+      description: ''
+      operationId: getTerm
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: Term to be fetched
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: Term was found
+          schema:
+            $ref: '#/definitions/Term'
+    patch:
+      tags: [tpa]
+      summary: Update a Term
+      description: |
+        Please note the following:
+          - You only need to provide the updated fields, the previously input data will remain
+          - The response will contain the entire new state of the Term object
+
+      operationId: updateTerm
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: External Id of Term to be fetched
+      - in: body
+        name: body
+        description: Partial Term object to be updated
+        schema:
+          $ref: "#/definitions/Term"
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Term was successfully updated
+          schema:
+            $ref: '#/definitions/Term'
+  /terms/{external_id}/insured-members:
+    post:
+      tags: [tpa]
+      summary: Add a dependent to the Policy coverage period
+      description: ''
+      operationId: createInsuredMember
+      consumes: ['multipart/form-data']
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: External Id of Term to be fetched
+      - in: body
+        name: body
+        description: Insured Member to be added
+        schema:
+          $ref: "#/definitions/InsuredMember"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The InsuredMember relationship was successfully created
+          schema:
+            $ref: '#/definitions/InsuredMember'
+  /terms/{external_id}/insured-members/{partner_member_id}:
+    delete:
+      tags: [tpa]
+      summary: Remove a dependent to the Policy coverage period
+      description: ''
+      operationId: removeInsuredMember
+      consumes: ['multipart/form-data']
+      parameters:
+      - in: path
+        name: external_id
+        type: string
+        required: true
+        description: External Id of Term 
+      - in: path
+        name: partner_member_id
+        type: string
+        required: true
+        description: Id of the Member to be removed
+      - in: body
+        name: body
+        description: Insured Member to be added
+        schema:
+          $ref: "#/definitions/InsuredMember"
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The InsuredMember relationship was successfully removed
+  /tpa/claims:
+    post:
+      tags: [tpa]
+      summary: Submit a claim for a member
+      description: ''
+      operationId: submitClaim
+      consumes:
+        - application/json
+      parameters:
+      - in: body
+        name: claim
+        description: Claim to be added with 
+        schema:
+          $ref: "#/definitions/Claim"
+      security:
+      - partner_token: []
+      responses:
+        201:
+          description: The Claim was successfully submitted
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Claim ID assigned to this request
+                example: ABC9876XYZ
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        422:
+          description: Request body fails validation. Check the Claim model schema 
+          schema:
+            $ref: '#/definitions/InvalidApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/InternalApiResponse'
+  /tpa/claims/{id}:
+    get:
+      tags: [tpa]
+      summary: 'Retrieve the details of a claim submitted to Medigo'
+      operationId: getClaim
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The ID provided in response of [submitClaim](#/tpa/submitClaim)
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: The Claim was returned successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                required: true
+                example: ABC9876XYZ
+              status:
+                type: string
+                required: true
+                example: SUBMITTED
+              notes:
+                type: string
+                example: Optional text written by the Claims Agent
+        400:
+          description: Invalid/missing id
+          schema:
+            $ref: '#/definitions/BadRequestApiResponse'
+        403:
+          description: Invalid token
+          schema:
+            $ref: '#/definitions/UnauthorizedApiResponse'
+        404:
+          description: No claim found for id
+          schema:
+            $ref: '#/definitions/NotFoundApiResponse'
+        500:
+          description: Internal Error - contact Medigo IT support
+          schema:
+            $ref: '#/definitions/ApiResponse'
+  /webhooks/{id}/trigger/{event}:
+    post:
+      tags: [webhooks]
+      summary: Simulate a webhook call
+      description: |
+        This allows to test your service's endpoint during the integration process.
+        This endpoint should not be called directly during production operations, as events hapening
+        on MEDIGO's system will automatically trigger the webhook calls.
+      operationId: triggerWebhookCall
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: UUID of webhook to be triggered
+      - in: path
+        name: event
+        type: string
+        required: true
+        description: Event type to be triggered
+        enum:
+          - second_opinion:update
+          - second_opinion:new_message
+          - second_opinion:report_ready
+      - in: body
+        name: body
+        description: |
+          The event payload. This depends on the type of events.
+
+            - For `second_opinion:update` events, the payload is of type *SecondOpinion*
+            - For `second_opinion:new_message` events, the payload is of type *SecondOpinionMessage*
+            - For `second_opinion:report_ready` events, the payload is of type *ReportReadyEvent*
+        schema:
+          type: object
+      security:
+      - partner_token: []
+      responses:
+        200:
+          description: |
+            The webhook was successfuly triggered.
+            **Note**: This doesn't mean that the endpoint hit by the webhook replied with a success code.
+            The call status will be part of the response returned by this endpoint.
+          schema:
+            $ref: '#/definitions/WebhookCall'
+securityDefinitions:
+  partner_token:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: |
+      Authentication done is via an *API token* provided by MEDIGO. The token should be provided as a bearer in the *Authorization* header of every request
+      Note that the string *Bearer* followed by a whitespace should be prepended to the token.
+      Example:
+
+          GET /v2/ HTTP/1.1
+          Host: https://api.medigo.com
+          Authorization: Bearer <your-api-token>
+
+definitions:
+  Procedure:
+    type: "object"
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Procedure identifier in MEDIGO's database
+        example: 112
+      name:
+        type: string
+        description: Procedure name
+        example: Dental Implant Removal
+      slug:
+        type: string
+        description: Procedure slug for use in urls
+        example: dental-implant-removal
+  Inquiry:
+    type: object
+    required: [comment, email, first_name, last_name, sex, birthdate, statement, timeplan]
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+      comment:
+        type: string
+        description: Basic description of the case
+      email:
+        type: string
+        format: email
+        description: Contact email
+        example: john.doe@private.me
+      first_name:
+        type: string
+        description: Patient's first name
+        example: John
+      last_name:
+        type: string
+        description: Patient's last name
+        example: Doe
+      sex:
+        type: string
+        description: Patient's sex
+        enum:
+          - female
+          - male
+        example: male
+      birthdate:
+        type: string
+        format: date-time
+        description: Patient's date of birth in ISO 8601 format
+        example: "1989-02-14T00:00:00.000Z"
+      statement:
+        type: string
+        description: |
+          How far along the patient is in the process of booking treatment:
+
+          - *researching* : Looking for general information about the clinic and treatment
+          - *choosing* : In the process of choosing the right clinic and getting a cost estimate
+          - *booking* : Ready to book an appointment
+
+        enum: [researching, choosing, booking]
+      timeplan:
+        type: string
+        description: |
+          Estimation of when the patient would like to have the procedure:
+
+          - *7-days* : Within the next 7 days
+          - *1-month* : Within the next month
+          - *3-months* : Within the next 3 months
+          - *3-months-plus* : Sometime later than the next 3 months
+
+        enum:
+          - 7-days
+          - 1-month
+          - 3-months
+          - 3-months-plus
+      language:
+        type: string
+        description: Patient's language as a [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+        example: fr
+      phone_number:
+        type: string
+        description: Patient's phone number
+      nationality:
+        type: string
+        description: Patient's country of citizenship. [3 characters country code](https://www.countrycode.org/) format
+      custom_fields:
+        type: object
+        description: Map of custom fields that you want to add to your request
+        items:
+          type: string
+        example:
+          my_field_1: hello
+          my_field_2: world
+      attachments:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: A list of UUIDs of uploaded files relevant to the case. See [Attachments](#/attachments)
+        example:
+          - fdsfds-afsdh-fasd823fdd44jksd
+          - dsj23o-i83hs-53453gfddjsfsddf
+      destination:
+        type: string
+        description: Prefered destination for the medical travel. [3 characters country code](https://www.countrycode.org/) format
+      procedures:
+        type: array
+        description: List of procedure IDs relevant to the inquiry. See [Searching for procedures](#/search/searchProcedures)
+        items:
+          type: integer
+          format: int64
+        example: [70, 73]
+  SecondOpinion:
+    type: object
+    required: [email, name, condition]
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+      external_id:
+        type: string
+        description: Free reference usually related to consumer data
+        example: '123'
+      email:
+        type: string
+        format: email
+        description: Patient's email
+        example: john.doe@private.me
+      name:
+        type: string
+        description: Patient's full name
+        example: John Doe
+      condition:
+        type: string
+        description: Description about the patient's condition
+        example: I have been feeling terrible pain on my right foot for months
+      sex:
+        type: string
+        description: Patient's sex
+        enum:
+          - female
+          - male
+        example: male
+      birthdate:
+        type: string
+        format: date
+        description: Patient's date of birth in `YYYY-MM-DD` format
+        example: "1989-02-14"
+      language:
+        type: string
+        description: Patient's language as a [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+        example: it
+      phone_number:
+        type: string
+        description: Patient's phone number
+      icd_code:
+        type: string
+        description: Optional [disease identifier](http://www.icd9data.com/)
+        example: R51
+      custom_fields:
+        type: object
+        description: Map of custom fields that you want to add to your request
+        items:
+          type: string
+        example:
+          my_custom_field: val
+          my_other_field: another val
+      payment_amount:
+        type: number
+        format: float
+        description: Amount of money paid by the user
+        example: 459.0
+      payment_currency:
+        type: string
+        description: Payment currency (format [ISO 4217](https://www.iban.com/currency-codes.html))
+        example: EUR
+      status:
+        type: string
+        readOnly: true
+        description: |
+          Current status of the second opinion request
+
+          - *NEW*: Default value when a second opinion entity is created. The second opinion remains NEW until the first message is added to it
+          - *PROCESSING*: MEDIGO is currently handling the case
+          - *AWAITING*: MEDIGO is expecting some action from the partner. (eg providing more information)
+          - *CLOSED*: The process has been entirely handled and no further changes are expected on the case
+
+          Note that the status is **read-only**. It is not necessary to provide it when querying the API as only MEDIGO will update this field. It will however always be sent back as part of the response.
+
+        enum:
+          - NEW
+          - PROCESSING
+          - AWAITING
+          - CLOSED
+  SecondOpinionMessage:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        readOnly: true
+        description: Generated message UUID
+        example: fasd823fdd44jksd-fesfjs-asfdh
+      second_opinion_id:
+        type: integer
+        format: int64
+        readOnly: true
+        description: id of related second opinion object
+      created_at:
+        type: string
+        format: date-time
+        readOnly: true
+        description: Date and time at which the message was created in [ISO 8601](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) format
+        example: 2017-09-05T15:14.000Z
+      direction:
+        type: string
+        enum: ['inbound', 'outbound']
+        description: |
+          Can take two values: `inbound` if the message is sent to you, or `outbound` if you sent the message
+        example: outbound
+      text:
+        type: string
+        description: Message content
+        example: Do you think that hip replacement is the right thing to do?
+      attachments:
+        type: array
+        description: A list of UUIDs of files uploaded along with the message. See [attachments](#/attachments)
+        items:
+          type: string
+          format: uuid
+        example:
+          - fdsfds-afsdh-fasd823fdd44jksd
+          - dsj23o-i83hs-53453gfddjsfsddf
+  Attachment:
+    type: object
+    properties:
+      uuid:
+        type: string
+        format: uuid
+        readOnly: true
+        description: Generated attachment's UUID
+        example: ead5dc24-e37f-4e2e82jss4db3f7574dd
+      name:
+        type: string
+        description: File name
+        example: my-attachment.pdf
+      mime_type:
+        type: string
+        description: |
+          File's [mime type](https://www.sitepoint.com/mime-types-complete-list/)
+          only some types are allowed to be uploaded
+        example: 'application/pdf'
+      size:
+        type: integer
+        format: int64
+        readOnly: true
+        description: File size in bytes
+        example: 57995
+  ReportReadyEvent:
+    type: "object"
+    properties:
+      second_opinion_id:
+        type: integer
+        format: int64
+        description: id of related second opinion object
+        example: 46
+      message_id:
+        type: string
+        format: uuid
+        description: id of the message that made the report available
+        example: fasd823fdd44jksd-fesfjs-asfdh
+      opinion_content:
+        type: string
+        description: Textual description of the second opinion. Should summarize what is provided in the documents
+        example: I would not concur with the given diagnosis because...
+      attachments:
+        description: A list of one or more Second Opinion documents.
+        type: array
+        items:
+          $ref: '#/definitions/Attachment'
+  WebhookCall:
+    type: "object"
+    properties:
+      started_at:
+        type: string
+        format: datetime
+        description: UTC date time at which the call was started by MEDIGO system
+        example: "2017-11-09T18:05:43.565629882Z"
+      finished_at:
+        type: string
+        format: datetime
+        description: UTC date time at which the call'response was received by MEDIGO system
+        example: "2017-11-09T18:05:43.665Z"
+      webhook_id:
+        type: string
+        format: uuid
+        description: related webhook id
+        example: 85472549-dbf8-4329-851c-adf789fc5391
+      status_code:
+        type: integer
+        description: The HTTP status code received after performing the call
+        example: 200
+      status:
+        type: string
+        description: The human readable status of the target's response
+        example: 200 OK
+  Member:
+    type: object
+    required: [first_name, last_name, sex, birthdate, residence]
+    properties:
+      partner_member_id:
+        type: string
+        description: Unique ID of the Member 
+      email:
+        type: string
+        format: email
+        description: Contact email
+        example: john.doe@private.me
+      first_name:
+        type: string
+        description: Member's first name(s)
+        example: John
+      middle_name:
+        type: string
+        description: Member's middle name(s)
+        example: Peter Jack
+      last_name:
+        type: string
+        description: Member's last name(s)
+        example: Doe
+      sex:
+        type: string
+        description: Member's sex
+        enum:
+          - female
+          - male
+        example: male
+      birthdate:
+        type: string
+        format: date-time
+        description: Member's date of birth in ISO 8601 format
+        example: "1989-02-14T00:00:00.000Z"
+      salutation:
+        type: string
+        example: Mr.
+        enum:
+          - Mr.
+          - Mrs.
+          - Sir
+          - Dr.
+          - Prof.
+      phone:
+        type: string
+        description: Member's phone number
+        example: "+49 321 987653"
+      residence:
+        type: string
+        description: Member's country of residence. [3 characters country code](https://www.countrycode.org/) format
+        example: deu
+      city:
+        type: string
+        description: Member's city of residence
+      address1:
+        type: string
+        description: Member's address
+      postal_code:
+        type: string
+        description: Member's postal code
+  InsurancePolicy:
+    type: object
+    required: [insurance_product_id, policy_number, policy_holder_id, status, underwriting_status, currency, start_date]
+    properties:
+      insurance_product_id:
+        type: string
+        description: Insurance Product Code in Medigo's System - provided by Medigo to the Insurance Partner
+      policy_number:
+        type: string
+        description: Unique Policy Number
+      policy_holder_partner_member_id:
+        type: string
+        description: Unique ID of the Member holding the Policy
+      status:
+        type: string
+        example: active
+        enum:
+          - active
+          - due for renewal
+          - suspended
+          - lapsed
+          - archived
+      underwriting_status:
+        type: string
+        example: FMU
+        enum:
+          - FMU
+          - Moratorium
+          - Rolling moratorium
+          - CPME
+          - MHD
+          - Unspecified
+      currency:
+        type: string
+        description: Currency (format [ISO 4217](https://www.iban.com/currency-codes.html))
+        example: EUR
+      start_date:
+        type: string
+        format: datetime
+        description: UTC Policy Inception date time
+        example: "2017-11-09T18:05:43.565629882Z"
+      cancellation_date:
+        type: string
+        format: datetime
+        description: UTC Policy Cancellation date time
+        example: "2019-10-19T18:04:23.775620812Z"
+  Term:
+    type: object
+    required: [policy_number, insurance_plan_id, table_of_benefits_id, coverage_area_id,  status, term_start, term_end]
+    properties:
+      policy_number:
+        type: string
+        description: Unique Policy Number
+      insurance_plan_id:
+        type: string
+        description: Insurance Plan Id in Medigo's System - provided by Medigo to the Insurance Partner
+      table_of_benefits_id:
+        type: string
+        description: Table of Benefits Id in Medigo's System - provided by Medigo to the Insurance Partner
+      coverage_area_id:
+        type: string
+        description: Coverage Area Id in Medigo's System - provided by Medigo to the Insurance Partner
+      status:
+        type: string
+        example: accepting
+        enum:
+          - accepting
+          - not accepting
+      term_start:
+        type: string
+        format: date
+        description: UTC coverage start date
+        example: "2019-11-09"
+      term_end:
+        type: string
+        format: datetime
+        description: UTC coverage end date
+        example: "2020-11-08"
+      deductible:
+        type: number
+        format: float
+        description: Deductible applied to the coverage period in Policy Currency
+        example: 459.0
+      premium:
+        type: number
+        format: float
+        description: Premium collected for the coverage period in Policy Currency
+        example: 1599.99
+      payment_period:
+        type: string
+        example: yearly
+        enum:
+          - yearly
+          - bi-annually
+          - quarterly
+          - monthly
+      external_id:
+        type: string
+        readOnly: true
+        description: Medigo's reference ID for this term
+        example: '123'
+  InsuredMember:
+    type: object
+    required: [term_id, member_id, relation]
+    properties:
+      term_external_id:
+        type: string
+        description: Medigo's reference ID for this term - see Term external_id
+        example: '123'
+      partner_member_id:
+        type: string
+        description: Unique ID of the Member 
+      relation:
+        type: string
+        example: wife
+        enum:
+          - husband
+          - wife
+          - civil partner
+          - son
+          - daughter
+          - unspecified
+  Claim:
+    type: object
+    required: [name, birthdate, membership_number]
+    properties:
+      name:
+        type: string
+        description: Patient's name
+        example: Jane Doe
+      birthdate:
+        type: string
+        format: date
+        description: Member's date of birth in ISO 8601 format YYYY-MM-DD
+        example: "1989-02-14"
+      membership_number:
+        type: string
+        description: Unique identifier assigned to the Member
+        example: ABC12345DEF
+      policy_number:
+        type: string
+        description: Policy Number
+        example: XYZ12345
+      policy_valid_until:
+        type: string
+        description: Policy validity date; assumes till end of day in ISO 8601 format YYYY-MM-DD 
+        example: "2035-11-30"
+      email:
+        type: string
+        format: email
+        description: Contact email
+        example: john.doe@private.me
+      phone:
+        type: string
+        format: phone
+        description: Contact phone with country code
+        example: +49 30 12345678
+      custom_fields:
+        type: object
+        description: Map of custom fields that you want to add to your request
+        example:
+          my_field_1: hello
+          my_field_2: world
+      files:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: A list of UUIDs of uploaded files relevant to the case. See [Attachments](#/attachments)
+        example:
+          - fdsfds-afsdh-fasd823fdd44jksd
+          - dsj23o-i83hs-53453gfddjsfsddf
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+  BadRequestApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: string
+        example: "BadRequest"
+      message:
+        type: string
+  UnauthorizedApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: string
+        example: "BadRequest"
+      message:
+        type: string
+  NotFoundApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: string
+        example: "NotFound"
+      message:
+        type: string
+  InvalidApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: string
+        example: "Invalid"
+      message:
+        type: string
+  InternalApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: string
+        example: "Internal"
+      message:
+        type: string

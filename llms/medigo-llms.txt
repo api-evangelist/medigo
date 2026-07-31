@@ -1,0 +1,38 @@
+# MEDIGO
+
+> MEDIGO (MEDIGO GmbH) is a Berlin-based health-tech company that enables global access to quality healthcare as a third party administrator (TPA). The MEDIGO API V2 is a partner REST API for insurers and integrators covering second medical opinions, medical inquiries, attachment upload, procedure search, and the TPA surface (members, insurance policies, terms, insured members, and claims), plus event webhooks. Authentication is via a partner API token sent as `Authorization: Bearer <token>`.
+
+## APIs
+
+- [MEDIGO API V2 documentation](https://api.medigo.com/docs/v2/): Swagger UI reference for the current API version. Base URL https://api.medigo.com/v2.
+- [MEDIGO API V1 documentation](https://api.medigo.com/docs/v1/): prior (legacy) API version.
+
+## Specs
+
+- [OpenAPI (Swagger 2.0)](https://api.medigo.com/docs/v2/medigo.yml): the machine-readable MEDIGO API V2 definition.
+
+## Product domains
+
+- Second Opinions: request and track professional review of a diagnosis or treatment (createSecondOpinion, getSecondOpinion, updateSecondOpinion, postSecondOpinionMessage, listSecondOpinionMessages, listSecondOpinionAttachments, getSecondOpinionAttachmentContent).
+- Inquiries: create a medical inquiry (createInquiry).
+- Files: upload attachments relevant to a medical inquiry (uploadFile).
+- Search: search procedures available through MEDIGO (searchProcedures).
+- TPA (insurance third party administration): manage members, insurance policies, terms, insured members, and submit/track claims (createMember, getMember, updateMember, createInsurancePolicy, getInsurancePolicy, updateInsurancePolicy, createTerm, getTermsByPolicyNumber, getTerm, updateTerm, createInsuredMember, removeInsuredMember, submitClaim, getClaim).
+- Webhooks: push notifications for second_opinion:update, second_opinion:new_message, and second_opinion:report_ready events; simulate with triggerWebhookCall.
+
+## Conventions
+
+- Auth: `Authorization: Bearer <partner-api-token>` (apiKey in header).
+- Content type: application/json for requests and responses.
+- Tracing: every response includes a `Trace-Id` header; include it when contacting support.
+- Errors: JSON envelope `{ code, message }` (not RFC 9457).
+- Versioning: URI path, current version v2.
+
+## Docs
+
+- [Company website](https://www.medigo.com)
+- [Our Services](https://www.medigo.com/services/)
+- [Contact / Support](https://www.medigo.com/contact/)
+- [Partnership Terms & Conditions](https://www.medigo.com/partnership-terms-conditions/)
+- [Privacy Policy](https://www.medigo.com/privacy-policy/)
+- [GitHub organization](https://github.com/MEDIGO)

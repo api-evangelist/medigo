@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://api.medigo.com/docs/v2/
+# Versioning is by URI path. V2 is the current/latest; V1 is the prior generation
+# and is still linked from the V2 docs ("[Click here](../v1/) for V1 documentation").
+# No formal deprecation-policy page, Sunset/Deprecation header contract, SLA page,
+# or public status page was found on the provider surface (developer surface is
+# token-gated). Absence recorded as honest negative data.
+versioning:
+  scheme: uri-path
+  current: v2
+  base_path: /v2
+  previous:
+  - version: v1
+    docs: https://api.medigo.com/docs/v1/
+    status: legacy
+  docs: https://api.medigo.com/docs/v2/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: V1 is superseded by V2 but no formal sunset/deprecation policy is published.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

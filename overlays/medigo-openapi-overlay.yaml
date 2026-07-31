@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for MEDIGO API
+  version: 1.0.0
+extends: openapi/medigo-openapi-original.yml
+# Captures API Evangelist's enrichment metadata for the MEDIGO API V2 without
+# mutating the harvested original spec (Swagger 2.0).
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-api-host: api.medigo.com
+    x-base-url: https://api.medigo.com/v2
+    x-auth-style: bearer-api-key
+    x-trace-header: Trace-Id
+    x-product-domains:
+    - second-opinions
+    - inquiries
+    - tpa
+    - search
+    - webhooks
+- target: $.info
+  update:
+    x-agent-ready:
+      authentication: authentication/medigo-authentication.yml
+      conventions: conventions/medigo-conventions.yml
+      errors: errors/medigo-problem-types.yml
+      data_model: data-model/medigo-data-model.yml
+      webhooks: asyncapi/medigo-webhooks.yml
+      idempotency: false
+      pagination: false

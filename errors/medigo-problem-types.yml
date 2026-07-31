@@ -1,0 +1,61 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/medigo-openapi-original.yml
+# MEDIGO uses a simple JSON error envelope ({code, message}), NOT RFC 9457
+# application/problem+json. Codes below are derived from the 4xx/5xx responses
+# declared across the OpenAPI, whose schemas ($ref ApiResponse family) carry the
+# `code` example strings captured here.
+format: json-error-envelope
+envelope:
+  content_type: application/json
+  fields:
+    code: string    # short machine-readable error label
+    message: string # human-readable description
+  trace_header: Trace-Id  # returned on every response for support/bug reports
+problems:
+- status: 400
+  code: BadRequest
+  title: Invalid or missing request data
+  schema: BadRequestApiResponse
+  remediation: Validate required fields and path/query parameters before retrying.
+  seen_on:
+  - createInquiry
+  - submitClaim
+  - getClaim
+- status: 403
+  code: Unauthorized
+  title: Invalid token
+  schema: UnauthorizedApiResponse
+  remediation: "Supply a valid partner API token as `Authorization: Bearer <token>`."
+  seen_on:
+  - searchProcedures
+  - createSecondOpinion
+  - createInquiry
+  - submitClaim
+  - getClaim
+- status: 404
+  code: NotFound
+  title: Resource not found
+  schema: NotFoundApiResponse
+  remediation: Confirm the id / policy_number / external_id exists and is owned by your account.
+  seen_on:
+  - getClaim
+- status: 422
+  code: Invalid
+  title: Unprocessable entity
+  schema: InvalidApiResponse
+  remediation: Payload failed business validation; inspect `message` for the failing field.
+  seen_on:
+  - createInquiry
+  - submitClaim
+- status: 500
+  code: Internal
+  title: Internal error - contact MEDIGO IT support
+  schema: InternalApiResponse
+  remediation: Retry later; if persistent, contact itops@medigo.com with the Trace-Id header value.
+  seen_on:
+  - searchProcedures
+  - createSecondOpinion
+  - createInquiry
+  - submitClaim
+  - getClaim
