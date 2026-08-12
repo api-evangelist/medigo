@@ -136,6 +136,8 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 common:
+- type: Overlay
+  url: overlays/medigo-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/medigo-agentic-access.yml
 - type: Conventions
