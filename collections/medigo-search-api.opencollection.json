@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MEDIGO attachments search API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search procedures available through MEDIGO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/procedures",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Query term to be matched"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "ISO 639-1 language code of in which the search terms are entered. Defaults to English if omitted or provided value not supported by MEDIGO"
+              }
+            ]
+          },
+          "docs": "Search procedures available through MEDIGO"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

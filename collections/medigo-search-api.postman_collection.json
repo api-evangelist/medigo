@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "cad774e0-0a7b-4249-b978-77fc97267cc5",
+      "name": "search",
+      "description": {
+        "content": "Search endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "972a6157-cc13-4696-833c-a7e1170b3b4c",
+          "name": "Search procedures available through MEDIGO",
+          "request": {
+            "name": "Search procedures available through MEDIGO",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "procedures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Query term to be matched"
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "ISO 639-1 language code of in which the search terms are entered. Defaults to English if omitted or provided value not supported by MEDIGO"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bc5879e0-e209-48ea-b6eb-2a18429b0113",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "procedures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 112,\n    \"name\": \"Dental Implant Removal\",\n    \"slug\": \"dental-implant-removal\"\n  },\n  {\n    \"id\": 112,\n    \"name\": \"Dental Implant Removal\",\n    \"slug\": \"dental-implant-removal\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cdbcf989-e788-403d-9bc8-ce9e22d9308f",
+    "name": "MEDIGO attachments search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.\n[Click here](../v1/) for V1 documentation.\n\n### Debug Info for Reporting Bugs\n\nIf you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`\nheader in every response that you should send along when interacting with MEDIGO support team.\n\n\nContact Support:\n Name: the API Support\n Email: itops@medigo.com",
+      "type": "text/plain"
+    }
+  }
+}

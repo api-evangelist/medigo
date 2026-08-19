@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MEDIGO attachments webhooks API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Simulate a webhook call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/:id/trigger/:event",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of webhook to be triggered"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "path",
+                "description": "Event type to be triggered"
+              }
+            ]
+          },
+          "docs": "This allows to test your service's endpoint during the integration process.\nThis endpoint should not be called directly during production operations, as events hapening\non MEDIGO's system will automatically trigger the webhook calls.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

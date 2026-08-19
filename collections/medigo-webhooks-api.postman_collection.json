@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "341d4fef-6d34-4ee5-94ae-301bdc1a4675",
+      "name": "webhooks",
+      "description": {
+        "content": "Push notification related to events in MEDIGO's system",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "428c73b4-1185-403c-ae4e-6be9f9cf01a4",
+          "name": "Simulate a webhook call",
+          "request": {
+            "name": "Simulate a webhook call",
+            "description": {
+              "content": "This allows to test your service's endpoint during the integration process.\nThis endpoint should not be called directly during production operations, as events hapening\non MEDIGO's system will automatically trigger the webhook calls.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":id",
+                "trigger",
+                ":event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) UUID of webhook to be triggered"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event",
+                  "description": "(Required) Event type to be triggered"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42c2faec-dee6-44f8-9142-7839a24f140b",
+              "name": "The webhook was successfuly triggered.\n**Note**: This doesn't mean that the endpoint hit by the webhook replied with a success code.\nThe call status will be part of the response returned by this endpoint.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":id",
+                    "trigger",
+                    ":event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) UUID of webhook to be triggered"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event",
+                      "description": "(Required) Event type to be triggered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"started_at\": \"2017-11-09T18:05:43.565629882Z\",\n  \"finished_at\": \"2017-11-09T18:05:43.665Z\",\n  \"webhook_id\": \"85472549-dbf8-4329-851c-adf789fc5391\",\n  \"status_code\": 200,\n  \"status\": \"200 OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9f57d9fd-d805-443d-a102-ccfe2aca9703",
+    "name": "MEDIGO attachments webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.\n[Click here](../v1/) for V1 documentation.\n\n### Debug Info for Reporting Bugs\n\nIf you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`\nheader in every response that you should send along when interacting with MEDIGO support team.\n\n\nContact Support:\n Name: the API Support\n Email: itops@medigo.com",
+      "type": "text/plain"
+    }
+  }
+}

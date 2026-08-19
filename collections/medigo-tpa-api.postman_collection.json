@@ -1,0 +1,2553 @@
+{
+  "item": [
+    {
+      "id": "055864c0-ddbd-49b4-8ace-44d919d664a6",
+      "name": "tpa",
+      "description": {
+        "content": "Insurance TPA service APIs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0cc98ee-5d16-4501-b923-9b578c9fe19b",
+          "name": "Enrol a new Member",
+          "request": {
+            "name": "Enrol a new Member",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "first_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Member's first name(s)"
+                },
+                {
+                  "key": "last_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Member's last name(s)"
+                },
+                {
+                  "key": "sex",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Member's sex (This can only be one of female,male)"
+                },
+                {
+                  "key": "birthdate",
+                  "value": "<dateTime>",
+                  "type": "text",
+                  "description": "(Required) Member's date of birth in ISO 8601 format"
+                },
+                {
+                  "key": "residence",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Member's country of residence. [3 characters country code](https://www.countrycode.org/) format"
+                },
+                {
+                  "key": "partner_member_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Unique ID of the Member"
+                },
+                {
+                  "key": "email",
+                  "value": "<email>",
+                  "type": "text",
+                  "description": "Contact email"
+                },
+                {
+                  "key": "middle_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Member's middle name(s)"
+                },
+                {
+                  "key": "salutation",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of Mr.,Mrs.,Sir,Dr.,Prof.)"
+                },
+                {
+                  "key": "phone",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Member's phone number"
+                },
+                {
+                  "key": "city",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Member's city of residence"
+                },
+                {
+                  "key": "address1",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Member's address"
+                },
+                {
+                  "key": "postal_code",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Member's postal code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a084960-46d8-48da-86bf-aeeb1b6c4056",
+              "name": "The Member was successfully enrolled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Member's first name(s)",
+                        "type": "text/plain"
+                      },
+                      "key": "first_name",
+                      "value": "John",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Member's last name(s)",
+                        "type": "text/plain"
+                      },
+                      "key": "last_name",
+                      "value": "Doe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Member's sex (This can only be one of female,male)",
+                        "type": "text/plain"
+                      },
+                      "key": "sex",
+                      "value": "male",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Member's date of birth in ISO 8601 format",
+                        "type": "text/plain"
+                      },
+                      "key": "birthdate",
+                      "value": "1989-02-14T00:00:00.000Z",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Member's country of residence. [3 characters country code](https://www.countrycode.org/) format",
+                        "type": "text/plain"
+                      },
+                      "key": "residence",
+                      "value": "deu",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Unique ID of the Member",
+                        "type": "text/plain"
+                      },
+                      "key": "partner_member_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Contact email",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "john.doe@private.me",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Member's middle name(s)",
+                        "type": "text/plain"
+                      },
+                      "key": "middle_name",
+                      "value": "Peter Jack",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of Mr.,Mrs.,Sir,Dr.,Prof.)",
+                        "type": "text/plain"
+                      },
+                      "key": "salutation",
+                      "value": "Mr.",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Member's phone number",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "+49 321 987653",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Member's city of residence",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Member's address",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Member's postal code",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"residence\": \"deu\",\n  \"partner_member_id\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"middle_name\": \"Peter Jack\",\n  \"salutation\": \"Mr.\",\n  \"phone\": \"+49 321 987653\",\n  \"city\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"postal_code\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00a6f7fa-0714-4948-a83b-854160e02d87",
+          "name": "Get a Member",
+          "request": {
+            "name": "Get a Member",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members",
+                ":partner_member_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partner_member_id",
+                  "description": "(Required) Id of the Member to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d057a777-1ae7-4ae2-82f9-3f39465d9e72",
+              "name": "Member was found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":partner_member_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partner_member_id",
+                      "description": "(Required) Id of the Member to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"residence\": \"deu\",\n  \"partner_member_id\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"middle_name\": \"Peter Jack\",\n  \"salutation\": \"Mr.\",\n  \"phone\": \"+49 321 987653\",\n  \"city\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"postal_code\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10bbcad8-858f-435e-b298-f163fe104480",
+          "name": "Update a Member",
+          "request": {
+            "name": "Update a Member",
+            "description": {
+              "content": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the Member object\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members",
+                ":partner_member_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partner_member_id",
+                  "description": "(Required) Id of the Member to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"birthdate\": \"<dateTime>\",\n  \"residence\": \"<string>\",\n  \"partner_member_id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"middle_name\": \"<string>\",\n  \"salutation\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"postal_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb7ceb34-7459-466b-91d0-cc697ff36fbd",
+              "name": "The Member was successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":partner_member_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partner_member_id",
+                      "description": "(Required) Id of the Member to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"residence\": \"deu\",\n  \"partner_member_id\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"middle_name\": \"Peter Jack\",\n  \"salutation\": \"Mr.\",\n  \"phone\": \"+49 321 987653\",\n  \"city\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"postal_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"residence\": \"deu\",\n  \"partner_member_id\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"middle_name\": \"Peter Jack\",\n  \"salutation\": \"Mr.\",\n  \"phone\": \"+49 321 987653\",\n  \"city\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"postal_code\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48d33270-aa79-4632-8299-91707ebcfa11",
+          "name": "Create a Policy for a Member",
+          "request": {
+            "name": "Create a Policy for a Member",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insurance-policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "insurance_product_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Insurance Product Code in Medigo's System - provided by Medigo to the Insurance Partner"
+                },
+                {
+                  "key": "policy_number",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Unique Policy Number"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required)  (This can only be one of active,due for renewal,suspended,lapsed,archived)"
+                },
+                {
+                  "key": "underwriting_status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required)  (This can only be one of FMU,Moratorium,Rolling moratorium,CPME,MHD,Unspecified)"
+                },
+                {
+                  "key": "currency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Currency (format [ISO 4217](https://www.iban.com/currency-codes.html))"
+                },
+                {
+                  "key": "start_date",
+                  "value": "<datetime>",
+                  "type": "text",
+                  "description": "(Required) UTC Policy Inception date time"
+                },
+                {
+                  "key": "policy_holder_partner_member_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Unique ID of the Member holding the Policy"
+                },
+                {
+                  "key": "cancellation_date",
+                  "value": "<datetime>",
+                  "type": "text",
+                  "description": "UTC Policy Cancellation date time"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5adcab42-7fcb-4299-86bd-88487238bb62",
+              "name": "The InsurancePolicy was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insurance-policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Insurance Product Code in Medigo's System - provided by Medigo to the Insurance Partner",
+                        "type": "text/plain"
+                      },
+                      "key": "insurance_product_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique Policy Number",
+                        "type": "text/plain"
+                      },
+                      "key": "policy_number",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required)  (This can only be one of active,due for renewal,suspended,lapsed,archived)",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "active",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required)  (This can only be one of FMU,Moratorium,Rolling moratorium,CPME,MHD,Unspecified)",
+                        "type": "text/plain"
+                      },
+                      "key": "underwriting_status",
+                      "value": "FMU",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Currency (format [ISO 4217](https://www.iban.com/currency-codes.html))",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "EUR",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) UTC Policy Inception date time",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "2017-11-09T18:05:43.565629882Z",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Unique ID of the Member holding the Policy",
+                        "type": "text/plain"
+                      },
+                      "key": "policy_holder_partner_member_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "UTC Policy Cancellation date time",
+                        "type": "text/plain"
+                      },
+                      "key": "cancellation_date",
+                      "value": "2019-10-19T18:04:23.775620812Z",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"insurance_product_id\": \"<string>\",\n  \"policy_number\": \"<string>\",\n  \"status\": \"active\",\n  \"underwriting_status\": \"FMU\",\n  \"currency\": \"EUR\",\n  \"start_date\": \"2017-11-09T18:05:43.565629882Z\",\n  \"policy_holder_partner_member_id\": \"<string>\",\n  \"cancellation_date\": \"2019-10-19T18:04:23.775620812Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "509b2c28-8907-47ef-811c-eac8d80ccb98",
+          "name": "Get an InsurancePolicy",
+          "request": {
+            "name": "Get an InsurancePolicy",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insurance-policies",
+                ":policy_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_number",
+                  "description": "(Required) PolicyNumber to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c0a4653-eab6-41f3-ae62-b2c4a020f9df",
+              "name": "Insurance Policy was found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insurance-policies",
+                    ":policy_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_number",
+                      "description": "(Required) PolicyNumber to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"insurance_product_id\": \"<string>\",\n  \"policy_number\": \"<string>\",\n  \"status\": \"active\",\n  \"underwriting_status\": \"FMU\",\n  \"currency\": \"EUR\",\n  \"start_date\": \"2017-11-09T18:05:43.565629882Z\",\n  \"policy_holder_partner_member_id\": \"<string>\",\n  \"cancellation_date\": \"2019-10-19T18:04:23.775620812Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8276d6b3-6201-44dd-89ec-d8b1e309632a",
+          "name": "Update an InsurancePolicy",
+          "request": {
+            "name": "Update an InsurancePolicy",
+            "description": {
+              "content": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the InsurancePolicy object\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insurance-policies",
+                ":policy_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_number",
+                  "description": "(Required) Policy Number to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"insurance_product_id\": \"<string>\",\n  \"policy_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"underwriting_status\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"start_date\": \"<datetime>\",\n  \"policy_holder_partner_member_id\": \"<string>\",\n  \"cancellation_date\": \"<datetime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c220af72-a348-47c6-86de-3369e26cf4b3",
+              "name": "The Insurance Policy was successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insurance-policies",
+                    ":policy_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_number",
+                      "description": "(Required) Policy Number to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"insurance_product_id\": \"<string>\",\n  \"policy_number\": \"<string>\",\n  \"status\": \"active\",\n  \"underwriting_status\": \"FMU\",\n  \"currency\": \"EUR\",\n  \"start_date\": \"2017-11-09T18:05:43.565629882Z\",\n  \"policy_holder_partner_member_id\": \"<string>\",\n  \"cancellation_date\": \"2019-10-19T18:04:23.775620812Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"insurance_product_id\": \"<string>\",\n  \"policy_number\": \"<string>\",\n  \"status\": \"active\",\n  \"underwriting_status\": \"FMU\",\n  \"currency\": \"EUR\",\n  \"start_date\": \"2017-11-09T18:05:43.565629882Z\",\n  \"policy_holder_partner_member_id\": \"<string>\",\n  \"cancellation_date\": \"2019-10-19T18:04:23.775620812Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bbca833-1a2e-40bd-9a19-33c12ef0ca74",
+          "name": "Create a policy coverage term for a Member",
+          "request": {
+            "name": "Create a policy coverage term for a Member",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "policy_number",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Unique Policy Number"
+                },
+                {
+                  "key": "insurance_plan_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Insurance Plan Id in Medigo's System - provided by Medigo to the Insurance Partner"
+                },
+                {
+                  "key": "table_of_benefits_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Table of Benefits Id in Medigo's System - provided by Medigo to the Insurance Partner"
+                },
+                {
+                  "key": "coverage_area_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Coverage Area Id in Medigo's System - provided by Medigo to the Insurance Partner"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required)  (This can only be one of accepting,not accepting)"
+                },
+                {
+                  "key": "term_start",
+                  "value": "<date>",
+                  "type": "text",
+                  "description": "(Required) UTC coverage start date"
+                },
+                {
+                  "key": "term_end",
+                  "value": "<datetime>",
+                  "type": "text",
+                  "description": "(Required) UTC coverage end date"
+                },
+                {
+                  "key": "deductible",
+                  "value": "<float>",
+                  "type": "text",
+                  "description": "Deductible applied to the coverage period in Policy Currency"
+                },
+                {
+                  "key": "premium",
+                  "value": "<float>",
+                  "type": "text",
+                  "description": "Premium collected for the coverage period in Policy Currency"
+                },
+                {
+                  "key": "payment_period",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of yearly,bi-annually,quarterly,monthly)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e52957ce-5074-47c8-b188-abeef969982a",
+              "name": "The Term was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Unique Policy Number",
+                        "type": "text/plain"
+                      },
+                      "key": "policy_number",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Insurance Plan Id in Medigo's System - provided by Medigo to the Insurance Partner",
+                        "type": "text/plain"
+                      },
+                      "key": "insurance_plan_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Table of Benefits Id in Medigo's System - provided by Medigo to the Insurance Partner",
+                        "type": "text/plain"
+                      },
+                      "key": "table_of_benefits_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Coverage Area Id in Medigo's System - provided by Medigo to the Insurance Partner",
+                        "type": "text/plain"
+                      },
+                      "key": "coverage_area_id",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required)  (This can only be one of accepting,not accepting)",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "accepting",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) UTC coverage start date",
+                        "type": "text/plain"
+                      },
+                      "key": "term_start",
+                      "value": "2019-11-09",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) UTC coverage end date",
+                        "type": "text/plain"
+                      },
+                      "key": "term_end",
+                      "value": "2020-11-08",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Deductible applied to the coverage period in Policy Currency",
+                        "type": "text/plain"
+                      },
+                      "key": "deductible",
+                      "value": "459",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Premium collected for the coverage period in Policy Currency",
+                        "type": "text/plain"
+                      },
+                      "key": "premium",
+                      "value": "1599.99",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of yearly,bi-annually,quarterly,monthly)",
+                        "type": "text/plain"
+                      },
+                      "key": "payment_period",
+                      "value": "yearly",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_number\": \"<string>\",\n  \"insurance_plan_id\": \"<string>\",\n  \"table_of_benefits_id\": \"<string>\",\n  \"coverage_area_id\": \"<string>\",\n  \"status\": \"accepting\",\n  \"term_start\": \"2019-11-09\",\n  \"term_end\": \"2020-11-08\",\n  \"deductible\": 459,\n  \"premium\": 1599.99,\n  \"payment_period\": \"yearly\",\n  \"external_id\": \"123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59cd63d8-ccde-486e-9e9f-895a37c8057c",
+          "name": "Get all Terms for a Policy",
+          "request": {
+            "name": "Get all Terms for a Policy",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insurance-policies",
+                ":policy_number",
+                "terms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_number",
+                  "description": "(Required) PolicyNumber to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a70d5d07-eeb5-461a-97f3-918256d4b6d2",
+              "name": "List of Terms for Policy was found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insurance-policies",
+                    ":policy_number",
+                    "terms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_number",
+                      "description": "(Required) PolicyNumber to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_number\": \"<string>\",\n  \"insurance_plan_id\": \"<string>\",\n  \"table_of_benefits_id\": \"<string>\",\n  \"coverage_area_id\": \"<string>\",\n  \"status\": \"accepting\",\n  \"term_start\": \"2019-11-09\",\n  \"term_end\": \"2020-11-08\",\n  \"deductible\": 459,\n  \"premium\": 1599.99,\n  \"payment_period\": \"yearly\",\n  \"external_id\": \"123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1370df0-2a5d-4f30-88a0-60afb40bd4b4",
+          "name": "Get a Term",
+          "request": {
+            "name": "Get a Term",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) Term to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0e375f52-4e7e-4b3a-9eeb-f191bdb91fb9",
+              "name": "Term was found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) Term to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_number\": \"<string>\",\n  \"insurance_plan_id\": \"<string>\",\n  \"table_of_benefits_id\": \"<string>\",\n  \"coverage_area_id\": \"<string>\",\n  \"status\": \"accepting\",\n  \"term_start\": \"2019-11-09\",\n  \"term_end\": \"2020-11-08\",\n  \"deductible\": 459,\n  \"premium\": 1599.99,\n  \"payment_period\": \"yearly\",\n  \"external_id\": \"123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a75f5e8-2069-4e12-ba52-598aadd742a5",
+          "name": "Update a Term",
+          "request": {
+            "name": "Update a Term",
+            "description": {
+              "content": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the Term object\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) External Id of Term to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_number\": \"<string>\",\n  \"insurance_plan_id\": \"<string>\",\n  \"table_of_benefits_id\": \"<string>\",\n  \"coverage_area_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"term_start\": \"<date>\",\n  \"term_end\": \"<datetime>\",\n  \"deductible\": \"<float>\",\n  \"premium\": \"<float>\",\n  \"payment_period\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0bbe719a-234f-45cf-ac3e-d2f3b8f3b573",
+              "name": "The Term was successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) External Id of Term to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_number\": \"<string>\",\n  \"insurance_plan_id\": \"<string>\",\n  \"table_of_benefits_id\": \"<string>\",\n  \"coverage_area_id\": \"<string>\",\n  \"status\": \"accepting\",\n  \"term_start\": \"2019-11-09\",\n  \"term_end\": \"2020-11-08\",\n  \"deductible\": 459,\n  \"premium\": 1599.99,\n  \"payment_period\": \"yearly\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_number\": \"<string>\",\n  \"insurance_plan_id\": \"<string>\",\n  \"table_of_benefits_id\": \"<string>\",\n  \"coverage_area_id\": \"<string>\",\n  \"status\": \"accepting\",\n  \"term_start\": \"2019-11-09\",\n  \"term_end\": \"2020-11-08\",\n  \"deductible\": 459,\n  \"premium\": 1599.99,\n  \"payment_period\": \"yearly\",\n  \"external_id\": \"123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b2159ac-1859-4273-bfd4-78f989a7baf3",
+          "name": "Add a dependent to the Policy coverage period",
+          "request": {
+            "name": "Add a dependent to the Policy coverage period",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms",
+                ":external_id",
+                "insured-members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) External Id of Term to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "relation",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required)  (This can only be one of husband,wife,civil partner,son,daughter,unspecified)"
+                },
+                {
+                  "key": "term_external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Medigo's reference ID for this term - see Term external_id"
+                },
+                {
+                  "key": "partner_member_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Unique ID of the Member"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1d4cd395-3136-477a-b914-b682c03904c5",
+              "name": "The InsuredMember relationship was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    ":external_id",
+                    "insured-members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) External Id of Term to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"relation\": \"wife\",\n  \"term_external_id\": \"123\",\n  \"partner_member_id\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6865b36-5ba6-4805-8206-96b11d9c61ff",
+          "name": "Remove a dependent to the Policy coverage period",
+          "request": {
+            "name": "Remove a dependent to the Policy coverage period",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms",
+                ":external_id",
+                "insured-members",
+                ":partner_member_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) External Id of Term"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partner_member_id",
+                  "description": "(Required) Id of the Member to be removed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "relation",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required)  (This can only be one of husband,wife,civil partner,son,daughter,unspecified)"
+                },
+                {
+                  "key": "term_external_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Medigo's reference ID for this term - see Term external_id"
+                },
+                {
+                  "key": "partner_member_id",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Unique ID of the Member"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7cd0e388-7b92-45c9-ab62-3ec399d3d4f9",
+              "name": "The InsuredMember relationship was successfully removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms",
+                    ":external_id",
+                    "insured-members",
+                    ":partner_member_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) External Id of Term"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partner_member_id",
+                      "description": "(Required) Id of the Member to be removed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77397323-efab-4e93-b787-a1ab7a33bdd2",
+          "name": "Submit a claim for a member",
+          "request": {
+            "name": "Submit a claim for a member",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tpa",
+                "claims"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"membership_number\": \"<string>\",\n  \"policy_number\": \"<string>\",\n  \"policy_valid_until\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<phone>\",\n  \"custom_fields\": \"<object>\",\n  \"files\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c7d8355-29ce-4219-aa7c-75284442ef87",
+              "name": "The Claim was successfully submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Jane Doe\",\n  \"birthdate\": \"1989-02-14\",\n  \"membership_number\": \"ABC12345DEF\",\n  \"policy_number\": \"XYZ12345\",\n  \"policy_valid_until\": \"2035-11-30\",\n  \"email\": \"john.doe@private.me\",\n  \"phone\": \"+49 30 12345678\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"files\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ABC9876XYZ\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59bed112-51a8-426c-9921-c534e4a2c751",
+              "name": "Invalid token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Jane Doe\",\n  \"birthdate\": \"1989-02-14\",\n  \"membership_number\": \"ABC12345DEF\",\n  \"policy_number\": \"XYZ12345\",\n  \"policy_valid_until\": \"2035-11-30\",\n  \"email\": \"john.doe@private.me\",\n  \"phone\": \"+49 30 12345678\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"files\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18b3e000-db9d-4b98-ac7e-bf38add49158",
+              "name": "Request body fails validation. Check the Claim model schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Jane Doe\",\n  \"birthdate\": \"1989-02-14\",\n  \"membership_number\": \"ABC12345DEF\",\n  \"policy_number\": \"XYZ12345\",\n  \"policy_valid_until\": \"2035-11-30\",\n  \"email\": \"john.doe@private.me\",\n  \"phone\": \"+49 30 12345678\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"files\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Invalid\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12dd2dda-90af-45dd-8977-d7174b0a368f",
+              "name": "Internal Error - contact Medigo IT support",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Jane Doe\",\n  \"birthdate\": \"1989-02-14\",\n  \"membership_number\": \"ABC12345DEF\",\n  \"policy_number\": \"XYZ12345\",\n  \"policy_valid_until\": \"2035-11-30\",\n  \"email\": \"john.doe@private.me\",\n  \"phone\": \"+49 30 12345678\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"files\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Internal\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1aa20047-efe6-40ba-b777-518a9c391dd6",
+          "name": "Retrieve the details of a claim submitted to Medigo",
+          "request": {
+            "name": "Retrieve the details of a claim submitted to Medigo",
+            "description": {},
+            "url": {
+              "path": [
+                "tpa",
+                "claims",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bf1e5c65-c1fa-42b2-b0e2-842e6245cbdb",
+              "name": "The Claim was returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ABC9876XYZ\",\n  \"status\": \"SUBMITTED\",\n  \"notes\": \"Optional text written by the Claims Agent\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15921833-0005-4bf1-a03f-95e61c4f5804",
+              "name": "Invalid/missing id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a040fdc-17f0-4e36-bc6e-e3d1f2035fb9",
+              "name": "Invalid token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeab07e9-dfe8-4a4d-a911-4f37aa8fa779",
+              "name": "No claim found for id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66102ce5-7c17-4904-a72d-8b028898afcf",
+              "name": "Internal Error - contact Medigo IT support",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tpa",
+                    "claims",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5816adb6-b551-48f0-94cd-1be44cb2bbad",
+    "name": "MEDIGO attachments tpa API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.\n[Click here](../v1/) for V1 documentation.\n\n### Debug Info for Reporting Bugs\n\nIf you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`\nheader in every response that you should send along when interacting with MEDIGO support team.\n\n\nContact Support:\n Name: the API Support\n Email: itops@medigo.com",
+      "type": "text/plain"
+    }
+  }
+}

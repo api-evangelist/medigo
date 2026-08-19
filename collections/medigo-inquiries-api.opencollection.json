@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MEDIGO attachments inquiries API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "inquiries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new Medical travel inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inquiries"
+          },
+          "docs": "Create a new Medical travel inquiry"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

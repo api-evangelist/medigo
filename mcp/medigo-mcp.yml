@@ -2,9 +2,6 @@ generated: '2026-07-20'
 method: derived
 source: openapi/medigo-openapi-original.yml
 status: candidate
-# No official hosted/remote MCP server for MEDIGO was found. This is a candidate
-# tool surface derived one-to-one from the OpenAPI operations, for a future MCP
-# server fronting the MEDIGO API V2.
 server:
   name: medigo
   transport: http
@@ -85,3 +82,9 @@ tools:
 - name: trigger_webhook_call
   description: Simulate a webhook call for integration testing.
   source_operation: openapi/medigo-openapi-original.yml#triggerWebhookCall
+deployment:
+  mode: none
+  verified: derived
+  tools: 25
+  checked: '2026-08-12'
+  source: catalog MCP census

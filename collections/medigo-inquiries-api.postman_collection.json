@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "831f9e41-1ee7-4e7e-868b-7526734f8f7f",
+      "name": "inquiries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69106544-7668-44f5-95fe-651c927730fd",
+          "name": "Create a new Medical travel inquiry",
+          "request": {
+            "name": "Create a new Medical travel inquiry",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inquiries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"birthdate\": \"<dateTime>\",\n  \"statement\": \"<string>\",\n  \"timeplan\": \"<string>\",\n  \"language\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"custom_fields\": \"<object>\",\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"destination\": \"<string>\",\n  \"procedures\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "acbf480b-f591-453c-8462-d4d3f8076c57",
+              "name": "The inquiry was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"statement\": \"<string>\",\n  \"timeplan\": \"<string>\",\n  \"language\": \"fr\",\n  \"phone_number\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"destination\": \"<string>\",\n  \"procedures\": [\n    70,\n    73\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"statement\": \"<string>\",\n  \"timeplan\": \"<string>\",\n  \"id\": 5289,\n  \"language\": \"fr\",\n  \"phone_number\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"destination\": \"<string>\",\n  \"procedures\": [\n    70,\n    73\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80d2278f-98fa-4420-99c6-9bf76e871626",
+              "name": "Invalid token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"statement\": \"<string>\",\n  \"timeplan\": \"<string>\",\n  \"language\": \"fr\",\n  \"phone_number\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"destination\": \"<string>\",\n  \"procedures\": [\n    70,\n    73\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"BadRequest\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "741494a7-a7e8-4c94-a816-22ae927b68f4",
+              "name": "Internal Error - contact Medigo IT support",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"email\": \"john.doe@private.me\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14T00:00:00.000Z\",\n  \"statement\": \"<string>\",\n  \"timeplan\": \"<string>\",\n  \"language\": \"fr\",\n  \"phone_number\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"custom_fields\": {\n    \"my_field_1\": \"hello\",\n    \"my_field_2\": \"world\"\n  },\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"destination\": \"<string>\",\n  \"procedures\": [\n    70,\n    73\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"Internal\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aca64fd1-55b9-41a6-a8d0-8f255d90f3cf",
+    "name": "MEDIGO attachments inquiries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.\n[Click here](../v1/) for V1 documentation.\n\n### Debug Info for Reporting Bugs\n\nIf you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`\nheader in every response that you should send along when interacting with MEDIGO support team.\n\n\nContact Support:\n Name: the API Support\n Email: itops@medigo.com",
+      "type": "text/plain"
+    }
+  }
+}

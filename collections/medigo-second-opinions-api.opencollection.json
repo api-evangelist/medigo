@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MEDIGO attachments second-opinions API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "second-opinions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Second Opinion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/second-opinions"
+          },
+          "docs": "Create a Second Opinion request"
+        },
+        {
+          "info": {
+            "name": "Get a second opinion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/second-opinions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of second opinion to be fetched"
+              }
+            ]
+          },
+          "docs": "Get a second opinion request"
+        },
+        {
+          "info": {
+            "name": "Update a second opinion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/second-opinions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of second opinion to be updated"
+              }
+            ]
+          },
+          "docs": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the second opinion object\n"
+        },
+        {
+          "info": {
+            "name": "List messages of a second opinion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/second-opinions/:id/messages",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of related second opinion"
+              }
+            ]
+          },
+          "docs": "List messages of a second opinion request"
+        },
+        {
+          "info": {
+            "name": "Add a message to a second opinion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/second-opinions/:id/messages",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of related second opinion"
+              }
+            ]
+          },
+          "docs": "Add a message to a second opinion request"
+        },
+        {
+          "info": {
+            "name": "List attachments of a second opinion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/second-opinions/:id/attachments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of second opinion to be updated"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to see a list of attachments's **metadata**. If you want to download the actual files, see [download attachment](#/second-opinions/getSecondOpinionAttachmentContent) instead.\n"
+        },
+        {
+          "info": {
+            "name": "Download second opinion attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/second-opinions/:id/attachments/:uuid/content",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of second opinion object"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the desired attachment"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to download an attachment. The content will be returned.\n**Caution**, this endpoint doesn't return JSON but the raw file content (binary or text according to attachment's MIME type)\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

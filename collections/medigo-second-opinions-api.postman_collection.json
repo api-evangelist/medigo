@@ -1,0 +1,887 @@
+{
+  "item": [
+    {
+      "id": "9d4ac2d4-7232-4415-b804-2edaa86ed1d1",
+      "name": "second-opinions",
+      "description": {
+        "content": "Professional review of a diagnosis or treatment already suggested by a doctor",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99494339-b158-4b18-ae1a-8768157f7539",
+          "name": "Create a Second Opinion request",
+          "request": {
+            "name": "Create a Second Opinion request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"language\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"<string>\",\n  \"custom_fields\": \"<object>\",\n  \"payment_amount\": \"<float>\",\n  \"payment_currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "328b2dc9-203d-4fe4-841c-438c6315a6cf",
+              "name": "The second opinion request was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@private.me\",\n  \"name\": \"John Doe\",\n  \"condition\": \"I have been feeling terrible pain on my right foot for months\",\n  \"external_id\": \"123\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14\",\n  \"language\": \"it\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"R51\",\n  \"custom_fields\": {\n    \"my_custom_field\": \"val\",\n    \"my_other_field\": \"another val\"\n  },\n  \"payment_amount\": 459,\n  \"payment_currency\": \"EUR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"john.doe@private.me\",\n  \"name\": \"John Doe\",\n  \"condition\": \"I have been feeling terrible pain on my right foot for months\",\n  \"id\": 2616,\n  \"external_id\": \"123\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14\",\n  \"language\": \"it\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"R51\",\n  \"custom_fields\": {\n    \"my_custom_field\": \"val\",\n    \"my_other_field\": \"another val\"\n  },\n  \"payment_amount\": 459,\n  \"payment_currency\": \"EUR\",\n  \"status\": \"PROCESSING\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fae55018-3a99-42a7-8ef2-aed93136821d",
+          "name": "Get a second opinion request",
+          "request": {
+            "name": "Get a second opinion request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of second opinion to be fetched"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb3c01a3-f391-41bb-81a6-b687d4f7aecb",
+              "name": "The second opinion request was found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of second opinion to be fetched"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"john.doe@private.me\",\n  \"name\": \"John Doe\",\n  \"condition\": \"I have been feeling terrible pain on my right foot for months\",\n  \"id\": 2616,\n  \"external_id\": \"123\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14\",\n  \"language\": \"it\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"R51\",\n  \"custom_fields\": {\n    \"my_custom_field\": \"val\",\n    \"my_other_field\": \"another val\"\n  },\n  \"payment_amount\": 459,\n  \"payment_currency\": \"EUR\",\n  \"status\": \"PROCESSING\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18cb6431-54ca-401b-8b0a-13dc41940ae4",
+          "name": "Update a second opinion request",
+          "request": {
+            "name": "Update a second opinion request",
+            "description": {
+              "content": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the second opinion object\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of second opinion to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"sex\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"language\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"<string>\",\n  \"custom_fields\": \"<object>\",\n  \"payment_amount\": \"<float>\",\n  \"payment_currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49da64cc-6a95-4262-94de-433ed8df5df6",
+              "name": "The second opinion request was successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of second opinion to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@private.me\",\n  \"name\": \"John Doe\",\n  \"condition\": \"I have been feeling terrible pain on my right foot for months\",\n  \"external_id\": \"123\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14\",\n  \"language\": \"it\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"R51\",\n  \"custom_fields\": {\n    \"my_custom_field\": \"val\",\n    \"my_other_field\": \"another val\"\n  },\n  \"payment_amount\": 459,\n  \"payment_currency\": \"EUR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"john.doe@private.me\",\n  \"name\": \"John Doe\",\n  \"condition\": \"I have been feeling terrible pain on my right foot for months\",\n  \"id\": 2616,\n  \"external_id\": \"123\",\n  \"sex\": \"male\",\n  \"birthdate\": \"1989-02-14\",\n  \"language\": \"it\",\n  \"phone_number\": \"<string>\",\n  \"icd_code\": \"R51\",\n  \"custom_fields\": {\n    \"my_custom_field\": \"val\",\n    \"my_other_field\": \"another val\"\n  },\n  \"payment_amount\": 459,\n  \"payment_currency\": \"EUR\",\n  \"status\": \"PROCESSING\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fe58d55-8c82-4ca0-a653-a64a44bb43ca",
+          "name": "Add a message to a second opinion request",
+          "request": {
+            "name": "Add a message to a second opinion request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions",
+                ":id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of related second opinion"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"direction\": \"<string>\",\n  \"text\": \"<string>\",\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ec2c5cb-dcc7-47ef-879e-9a3b5a26a4b8",
+              "name": "The new message was added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions",
+                    ":id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of related second opinion"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"direction\": \"outbound\",\n  \"text\": \"Do you think that hip replacement is the right thing to do?\",\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"387bb784-48f2-30bb-bd09-08ba8dcd2bdb\",\n  \"second_opinion_id\": 6673,\n  \"created_at\": \"1984-03-22T01:44:44.555Z\",\n  \"direction\": \"outbound\",\n  \"text\": \"Do you think that hip replacement is the right thing to do?\",\n  \"attachments\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6c3f51a-d5fc-4f8a-84ec-aebe65bbf067",
+          "name": "List messages of a second opinion request",
+          "request": {
+            "name": "List messages of a second opinion request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions",
+                ":id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of related second opinion"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5a16bb84-0bbe-405f-9675-d5f3623121b0",
+              "name": "Request was successful. Note that if the second opinion doesn't have any messages, the status *200* will still be returned with an empty array in the body.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions",
+                    ":id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of related second opinion"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"dbe63fad-baef-45ff-c02b-b03dd2dba544\",\n    \"second_opinion_id\": 997,\n    \"created_at\": \"1951-08-03T09:32:54.211Z\",\n    \"direction\": \"outbound\",\n    \"text\": \"Do you think that hip replacement is the right thing to do?\",\n    \"attachments\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  {\n    \"id\": \"7b1d145b-487a-92ab-7726-f4e102225cd7\",\n    \"second_opinion_id\": 4021,\n    \"created_at\": \"1994-02-25T01:27:53.174Z\",\n    \"direction\": \"outbound\",\n    \"text\": \"Do you think that hip replacement is the right thing to do?\",\n    \"attachments\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "335f412d-fb37-4f9b-a393-cee51dc3c0b2",
+          "name": "List attachments of a second opinion request",
+          "request": {
+            "name": "List attachments of a second opinion request",
+            "description": {
+              "content": "Use this endpoint to see a list of attachments's **metadata**. If you want to download the actual files, see [download attachment](#/second-opinions/getSecondOpinionAttachmentContent) instead.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions",
+                ":id",
+                "attachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of second opinion to be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe79740e-e520-46da-bfb6-3a292611e852",
+              "name": "Request was successful. Note that if the second opinion doesn't have any attachments, the status *200* will still be returned with an empty array in the body.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions",
+                    ":id",
+                    "attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of second opinion to be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"cc09cb09-ac87-2945-3ce5-7de92c527619\",\n    \"name\": \"my-attachment.pdf\",\n    \"mime_type\": \"application/pdf\",\n    \"size\": 57995\n  },\n  {\n    \"uuid\": \"d79ee601-8b0f-b295-4e63-002c6c875373\",\n    \"name\": \"my-attachment.pdf\",\n    \"mime_type\": \"application/pdf\",\n    \"size\": 57995\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d1e6a1a-7934-498e-938d-aea0e3fd5d03",
+          "name": "Download second opinion attachments",
+          "request": {
+            "name": "Download second opinion attachments",
+            "description": {
+              "content": "Use this endpoint to download an attachment. The content will be returned.\n**Caution**, this endpoint doesn't return JSON but the raw file content (binary or text according to attachment's MIME type)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "second-opinions",
+                ":id",
+                "attachments",
+                ":uuid",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of second opinion object"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the desired attachment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c1037875-a27b-48ba-a7ae-040d93d6e5ac",
+              "name": "File was found and data is sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "second-opinions",
+                    ":id",
+                    "attachments",
+                    ":uuid",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of second opinion object"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the desired attachment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b44a342b-5628-4aff-a856-d594e0072c28",
+    "name": "MEDIGO attachments second-opinions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the official documentation for MEDIGO REST API. Your are seeing the documentation for **version 2**, the latest.\n[Click here](../v1/) for V1 documentation.\n\n### Debug Info for Reporting Bugs\n\nIf you need some support for the API usage or wish to report a bug in MEDIGO API, we include the additional `Trace-Id`\nheader in every response that you should send along when interacting with MEDIGO support team.\n\n\nContact Support:\n Name: the API Support\n Email: itops@medigo.com",
+      "type": "text/plain"
+    }
+  }
+}

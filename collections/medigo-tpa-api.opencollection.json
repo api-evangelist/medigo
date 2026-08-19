@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MEDIGO attachments tpa API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tpa",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrol a new Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/members"
+          },
+          "docs": "Enrol a new Member"
+        },
+        {
+          "info": {
+            "name": "Get a Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/members/:partner_member_id",
+            "params": [
+              {
+                "name": "partner_member_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Member to be fetched"
+              }
+            ]
+          },
+          "docs": "Get a Member"
+        },
+        {
+          "info": {
+            "name": "Update a Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/members/:partner_member_id",
+            "params": [
+              {
+                "name": "partner_member_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Member to be updated"
+              }
+            ]
+          },
+          "docs": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the Member object\n"
+        },
+        {
+          "info": {
+            "name": "Create a Policy for a Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/insurance-policies"
+          },
+          "docs": "Create a Policy for a Member"
+        },
+        {
+          "info": {
+            "name": "Get an InsurancePolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insurance-policies/:policy_number",
+            "params": [
+              {
+                "name": "policy_number",
+                "value": "",
+                "type": "path",
+                "description": "PolicyNumber to be fetched"
+              }
+            ]
+          },
+          "docs": "Get an InsurancePolicy"
+        },
+        {
+          "info": {
+            "name": "Update an InsurancePolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/insurance-policies/:policy_number",
+            "params": [
+              {
+                "name": "policy_number",
+                "value": "",
+                "type": "path",
+                "description": "Policy Number to be updated"
+              }
+            ]
+          },
+          "docs": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the InsurancePolicy object\n"
+        },
+        {
+          "info": {
+            "name": "Create a policy coverage term for a Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/terms"
+          },
+          "docs": "Create a policy coverage term for a Member"
+        },
+        {
+          "info": {
+            "name": "Get all Terms for a Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insurance-policies/:policy_number/terms",
+            "params": [
+              {
+                "name": "policy_number",
+                "value": "",
+                "type": "path",
+                "description": "PolicyNumber to be fetched"
+              }
+            ]
+          },
+          "docs": "Get all Terms for a Policy"
+        },
+        {
+          "info": {
+            "name": "Get a Term",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/terms/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "Term to be fetched"
+              }
+            ]
+          },
+          "docs": "Get a Term"
+        },
+        {
+          "info": {
+            "name": "Update a Term",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/terms/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "External Id of Term to be fetched"
+              }
+            ]
+          },
+          "docs": "Please note the following:\n  - You only need to provide the updated fields, the previously input data will remain\n  - The response will contain the entire new state of the Term object\n"
+        },
+        {
+          "info": {
+            "name": "Add a dependent to the Policy coverage period",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/terms/:external_id/insured-members",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "External Id of Term to be fetched"
+              }
+            ]
+          },
+          "docs": "Add a dependent to the Policy coverage period"
+        },
+        {
+          "info": {
+            "name": "Remove a dependent to the Policy coverage period",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/terms/:external_id/insured-members/:partner_member_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "External Id of Term"
+              },
+              {
+                "name": "partner_member_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Member to be removed"
+              }
+            ]
+          },
+          "docs": "Remove a dependent to the Policy coverage period"
+        },
+        {
+          "info": {
+            "name": "Submit a claim for a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tpa/claims"
+          },
+          "docs": "Submit a claim for a member"
+        },
+        {
+          "info": {
+            "name": "Retrieve the details of a claim submitted to Medigo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tpa/claims/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID provided in response of [submitClaim](#/tpa/submitClaim)"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a claim submitted to Medigo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
