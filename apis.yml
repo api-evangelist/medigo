@@ -39,6 +39,17 @@ tags:
 - Consumer
 - Healthcare
 - Insurance
+- Third-Party Administrator
+- Claims
+- Cost Containment
+- Second Medical Opinion
+- Medical Travel
+- Health Insurance
+tags_raw:
+- Company
+- Consumer
+- Healthcare
+- Insurance
 - Third Party Administrator
 - Claims
 - Cost Containment
@@ -57,6 +68,8 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
+  - Attachments
+  tags_raw:
   - attachments
   properties:
   - type: OpenAPI
@@ -71,6 +84,8 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
+  - Inquiries
+  tags_raw:
   - inquiries
   properties:
   - type: OpenAPI
@@ -85,6 +100,8 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
+  - Search
+  tags_raw:
   - search
   properties:
   - type: OpenAPI
@@ -113,6 +130,8 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
+  - TPA
+  tags_raw:
   - tpa
   properties:
   - type: OpenAPI
@@ -127,6 +146,8 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
+  - Webhook
+  tags_raw:
   - webhooks
   properties:
   - type: OpenAPI
