@@ -1,0 +1,28 @@
+slug: medigo
+provider: Medigo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: tpa
+  spec_file: medigo-tpa-api-openapi.yml
+  capability_id: BC-2140
+  capability_id_l1: BC-2140
+  capability_name: Policy Administration Management
+  confidence: 0.8
+  evidence: POST /insurance-policies createInsurancePolicy Create a Policy for a Member; POST /terms createTerm
+    Create a policy coverage term for a Member; POST /terms/{external_id}/insured-members Add a dependent
+    to the Policy coverage period
+  reason: Operations create and maintain members, insurance policies, coverage terms and insured dependents
+    — administration of in-force insurance contracts and their covered lives. Sits squarely in Policy
+    Administration Management; ambiguous between issuance and group/master policy (certificate) administration,
+    so no L2 asserted.

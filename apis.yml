@@ -169,6 +169,9 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 common:
+- type: CapabilityMap
+  url: capabilities/medigo-capability-edges.yml
+  name: Medigo Business Capability Map
 - type: Overlay
   url: overlays/medigo-openapi-overlay.yaml
 - type: AgenticAccess
