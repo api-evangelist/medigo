@@ -51,7 +51,7 @@ tags:
 - Consumer
 - Healthcare
 - Insurance
-- Third-Party Administrator
+- Third Party Administrator
 - Claims
 - Cost Containment
 - Second Medical Opinion
@@ -96,7 +96,7 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
-  - Inquiries
+  - inquiries
   tags_raw:
   - inquiries
   properties:
@@ -142,7 +142,7 @@ apis:
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
   tags:
-  - TPA
+  - tpa
   tags_raw:
   - tpa
   properties:
