@@ -76,6 +76,14 @@ paths:
               - file
 components:
   schemas:
+    UnauthorizedApiResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: BadRequest
+        message:
+          type: string
     Attachment:
       type: object
       properties:
@@ -104,14 +112,6 @@ components:
           description: File size in bytes
           example: 57995
     BadRequestApiResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-    UnauthorizedApiResponse:
       type: object
       properties:
         code:

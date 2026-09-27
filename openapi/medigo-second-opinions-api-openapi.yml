@@ -215,6 +215,33 @@ paths:
                 format: binary
 components:
   schemas:
+    Attachment:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Generated attachment's UUID
+          example: ead5dc24-e37f-4e2e82jss4db3f7574dd
+        name:
+          type: string
+          description: File name
+          example: my-attachment.pdf
+        mime_type:
+          type: string
+          description: 'File''s [mime type](https://www.sitepoint.com/mime-types-complete-list/)
+
+            only some types are allowed to be uploaded
+
+            '
+          example: application/pdf
+        size:
+          type: integer
+          format: int64
+          readOnly: true
+          description: File size in bytes
+          example: 57995
     SecondOpinion:
       type: object
       required:
@@ -306,33 +333,6 @@ components:
           - PROCESSING
           - AWAITING
           - CLOSED
-    Attachment:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-          description: Generated attachment's UUID
-          example: ead5dc24-e37f-4e2e82jss4db3f7574dd
-        name:
-          type: string
-          description: File name
-          example: my-attachment.pdf
-        mime_type:
-          type: string
-          description: 'File''s [mime type](https://www.sitepoint.com/mime-types-complete-list/)
-
-            only some types are allowed to be uploaded
-
-            '
-          example: application/pdf
-        size:
-          type: integer
-          format: int64
-          readOnly: true
-          description: File size in bytes
-          example: 57995
     SecondOpinionMessage:
       type: object
       properties:

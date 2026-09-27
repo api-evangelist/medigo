@@ -76,7 +76,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: medigo:medigo-attachments-api
-  name: Medigo attachments API
+  name: Medigo Attachments API
   description: File that contains content relevant to a medical inquiry
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
@@ -92,7 +92,7 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 - aid: medigo:medigo-inquiries-api
-  name: Medigo inquiries API
+  name: Medigo Inquiries API
   description: The inquiries API from Medigo — 1 operation(s) for inquiries.
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
@@ -108,7 +108,7 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 - aid: medigo:medigo-search-api
-  name: Medigo search API
+  name: Medigo Search API
   description: Search endpoints
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
@@ -124,7 +124,7 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 - aid: medigo:medigo-second-opinions-api
-  name: Medigo second-opinions API
+  name: Medigo Second Opinions API
   description: Professional review of a diagnosis or treatment already suggested by a doctor
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
@@ -138,7 +138,7 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 - aid: medigo:medigo-tpa-api
-  name: Medigo tpa API
+  name: Medigo Tpa API
   description: Insurance TPA service APIs
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
@@ -154,7 +154,7 @@ apis:
   - type: Documentation
     url: https://api.medigo.com/docs/v2/
 - aid: medigo:medigo-webhooks-api
-  name: Medigo webhooks API
+  name: Medigo Webhooks API
   description: Push notification related to events in MEDIGO's system
   humanURL: https://api.medigo.com/docs/v2/
   baseURL: https://api.medigo.com/v2
