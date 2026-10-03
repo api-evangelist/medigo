@@ -442,81 +442,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    UnauthorizedApiResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
-    Member:
-      type: object
-      required:
-      - first_name
-      - last_name
-      - sex
-      - birthdate
-      - residence
-      properties:
-        partner_member_id:
-          type: string
-          description: Unique ID of the Member
-        email:
-          type: string
-          format: email
-          description: Contact email
-          example: john.doe@private.me
-        first_name:
-          type: string
-          description: Member's first name(s)
-          example: John
-        middle_name:
-          type: string
-          description: Member's middle name(s)
-          example: Peter Jack
-        last_name:
-          type: string
-          description: Member's last name(s)
-          example: Doe
-        sex:
-          type: string
-          description: Member's sex
-          enum:
-          - female
-          - male
-          example: male
-        birthdate:
-          type: string
-          format: date-time
-          description: Member's date of birth in ISO 8601 format
-          example: '1989-02-14T00:00:00.000Z'
-        salutation:
-          type: string
-          example: Mr.
-          enum:
-          - Mr.
-          - Mrs.
-          - Sir
-          - Dr.
-          - Prof.
-        phone:
-          type: string
-          description: Member's phone number
-          example: +49 321 987653
-        residence:
-          type: string
-          description: Member's country of residence. [3 characters country code](https://www.countrycode.org/) format
-          example: deu
-        city:
-          type: string
-          description: Member's city of residence
-        address1:
-          type: string
-          description: Member's address
-        postal_code:
-          type: string
-          description: Member's postal code
     InsuredMember:
       type: object
       required:
@@ -594,12 +519,81 @@ components:
           example:
           - fdsfds-afsdh-fasd823fdd44jksd
           - dsj23o-i83hs-53453gfddjsfsddf
+    InsurancePolicy:
+      type: object
+      required:
+      - insurance_product_id
+      - policy_number
+      - policy_holder_id
+      - status
+      - underwriting_status
+      - currency
+      - start_date
+      properties:
+        insurance_product_id:
+          type: string
+          description: Insurance Product Code in Medigo's System - provided by Medigo to the Insurance Partner
+        policy_number:
+          type: string
+          description: Unique Policy Number
+        policy_holder_partner_member_id:
+          type: string
+          description: Unique ID of the Member holding the Policy
+        status:
+          type: string
+          example: active
+          enum:
+          - active
+          - due for renewal
+          - suspended
+          - lapsed
+          - archived
+        underwriting_status:
+          type: string
+          example: FMU
+          enum:
+          - FMU
+          - Moratorium
+          - Rolling moratorium
+          - CPME
+          - MHD
+          - Unspecified
+        currency:
+          type: string
+          description: Currency (format [ISO 4217](https://www.iban.com/currency-codes.html))
+          example: EUR
+        start_date:
+          type: string
+          format: datetime
+          description: UTC Policy Inception date time
+          example: '2017-11-09T18:05:43.565629882Z'
+        cancellation_date:
+          type: string
+          format: datetime
+          description: UTC Policy Cancellation date time
+          example: '2019-10-19T18:04:23.775620812Z'
     BadRequestApiResponse:
       type: object
       properties:
         code:
           type: string
           example: BadRequest
+        message:
+          type: string
+    InternalApiResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: Internal
+        message:
+          type: string
+    NotFoundApiResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: NotFound
         message:
           type: string
     Term:
@@ -664,67 +658,6 @@ components:
           readOnly: true
           description: Medigo's reference ID for this term
           example: '123'
-    InsurancePolicy:
-      type: object
-      required:
-      - insurance_product_id
-      - policy_number
-      - policy_holder_id
-      - status
-      - underwriting_status
-      - currency
-      - start_date
-      properties:
-        insurance_product_id:
-          type: string
-          description: Insurance Product Code in Medigo's System - provided by Medigo to the Insurance Partner
-        policy_number:
-          type: string
-          description: Unique Policy Number
-        policy_holder_partner_member_id:
-          type: string
-          description: Unique ID of the Member holding the Policy
-        status:
-          type: string
-          example: active
-          enum:
-          - active
-          - due for renewal
-          - suspended
-          - lapsed
-          - archived
-        underwriting_status:
-          type: string
-          example: FMU
-          enum:
-          - FMU
-          - Moratorium
-          - Rolling moratorium
-          - CPME
-          - MHD
-          - Unspecified
-        currency:
-          type: string
-          description: Currency (format [ISO 4217](https://www.iban.com/currency-codes.html))
-          example: EUR
-        start_date:
-          type: string
-          format: datetime
-          description: UTC Policy Inception date time
-          example: '2017-11-09T18:05:43.565629882Z'
-        cancellation_date:
-          type: string
-          format: datetime
-          description: UTC Policy Cancellation date time
-          example: '2019-10-19T18:04:23.775620812Z'
-    NotFoundApiResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          example: NotFound
-        message:
-          type: string
     InvalidApiResponse:
       type: object
       properties:
@@ -733,12 +666,12 @@ components:
           example: Invalid
         message:
           type: string
-    InternalApiResponse:
+    UnauthorizedApiResponse:
       type: object
       properties:
         code:
           type: string
-          example: Internal
+          example: BadRequest
         message:
           type: string
     ApiResponse:
@@ -748,6 +681,73 @@ components:
           type: string
         message:
           type: string
+    Member:
+      type: object
+      required:
+      - first_name
+      - last_name
+      - sex
+      - birthdate
+      - residence
+      properties:
+        partner_member_id:
+          type: string
+          description: Unique ID of the Member
+        email:
+          type: string
+          format: email
+          description: Contact email
+          example: john.doe@private.me
+        first_name:
+          type: string
+          description: Member's first name(s)
+          example: John
+        middle_name:
+          type: string
+          description: Member's middle name(s)
+          example: Peter Jack
+        last_name:
+          type: string
+          description: Member's last name(s)
+          example: Doe
+        sex:
+          type: string
+          description: Member's sex
+          enum:
+          - female
+          - male
+          example: male
+        birthdate:
+          type: string
+          format: date-time
+          description: Member's date of birth in ISO 8601 format
+          example: '1989-02-14T00:00:00.000Z'
+        salutation:
+          type: string
+          example: Mr.
+          enum:
+          - Mr.
+          - Mrs.
+          - Sir
+          - Dr.
+          - Prof.
+        phone:
+          type: string
+          description: Member's phone number
+          example: +49 321 987653
+        residence:
+          type: string
+          description: Member's country of residence. [3 characters country code](https://www.countrycode.org/) format
+          example: deu
+        city:
+          type: string
+          description: Member's city of residence
+        address1:
+          type: string
+          description: Member's address
+        postal_code:
+          type: string
+          description: Member's postal code
   securitySchemes:
     partner_token:
       type: apiKey

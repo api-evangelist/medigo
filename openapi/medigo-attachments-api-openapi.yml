@@ -76,14 +76,6 @@ paths:
               - file
 components:
   schemas:
-    UnauthorizedApiResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          example: BadRequest
-        message:
-          type: string
     Attachment:
       type: object
       properties:
@@ -119,6 +111,14 @@ components:
           example: BadRequest
         message:
           type: string
+    InternalApiResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: Internal
+        message:
+          type: string
     InvalidApiResponse:
       type: object
       properties:
@@ -127,12 +127,12 @@ components:
           example: Invalid
         message:
           type: string
-    InternalApiResponse:
+    UnauthorizedApiResponse:
       type: object
       properties:
         code:
           type: string
-          example: Internal
+          example: BadRequest
         message:
           type: string
   securitySchemes:

@@ -242,6 +242,48 @@ components:
           readOnly: true
           description: File size in bytes
           example: 57995
+    SecondOpinionMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Generated message UUID
+          example: fasd823fdd44jksd-fesfjs-asfdh
+        second_opinion_id:
+          type: integer
+          format: int64
+          readOnly: true
+          description: id of related second opinion object
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time at which the message was created in [ISO 8601](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) format
+          example: 2017-09-05T15:14.000Z
+        direction:
+          type: string
+          enum:
+          - inbound
+          - outbound
+          description: 'Can take two values: `inbound` if the message is sent to you, or `outbound` if you sent the message
+
+            '
+          example: outbound
+        text:
+          type: string
+          description: Message content
+          example: Do you think that hip replacement is the right thing to do?
+        attachments:
+          type: array
+          description: A list of UUIDs of files uploaded along with the message. See [attachments](#/attachments)
+          items:
+            type: string
+            format: uuid
+          example:
+          - fdsfds-afsdh-fasd823fdd44jksd
+          - dsj23o-i83hs-53453gfddjsfsddf
     SecondOpinion:
       type: object
       required:
@@ -333,48 +375,6 @@ components:
           - PROCESSING
           - AWAITING
           - CLOSED
-    SecondOpinionMessage:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-          description: Generated message UUID
-          example: fasd823fdd44jksd-fesfjs-asfdh
-        second_opinion_id:
-          type: integer
-          format: int64
-          readOnly: true
-          description: id of related second opinion object
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time at which the message was created in [ISO 8601](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) format
-          example: 2017-09-05T15:14.000Z
-        direction:
-          type: string
-          enum:
-          - inbound
-          - outbound
-          description: 'Can take two values: `inbound` if the message is sent to you, or `outbound` if you sent the message
-
-            '
-          example: outbound
-        text:
-          type: string
-          description: Message content
-          example: Do you think that hip replacement is the right thing to do?
-        attachments:
-          type: array
-          description: A list of UUIDs of files uploaded along with the message. See [attachments](#/attachments)
-          items:
-            type: string
-            format: uuid
-          example:
-          - fdsfds-afsdh-fasd823fdd44jksd
-          - dsj23o-i83hs-53453gfddjsfsddf
   securitySchemes:
     partner_token:
       type: apiKey
